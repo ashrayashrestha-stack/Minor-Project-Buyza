@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a class="nav-link active" href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="shopping.html">Home</a></li>
+      <li><a href="beauty-products.html">Beauty Products</a></li>
+      <li><a href="#">Bath & Body</a></li>
+      <li class="active">Denver Body Spray</li>
+    </ol>
+  </nav>
+
+  <div class="product-page">
+    <div class="product-media">
+      <div class="carousel product-carousel" data-interval="4000">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/Denver-Exclusive-Deal-800-1070_77ecc751-b39f-42f5-969c-be123d617fc8_1.jpg"
+              alt="Logitech G402 view 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/Denver.jpg" alt="Logitech G402 view 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/denver 2.webp" alt="Logitech G402 view 3">
+          </div>
+        </div>
+        <button class="carousel-btn prev" aria-label="Previous">
+          < </button>
+            <button class="carousel-btn next" aria-label="Next"> > </button>
+      </div>
+
+      <div class="product-price-box">
+        <div class="price-row">
+          <span class="price">Rs. 450</span>
+        </div>
+        <div class="discount">30% off</div>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <div class="product-title-box">
+        <h3>Denver Hamilton Deodorant 150 ML | Long Lasting Deodorant Body Spray For Men</h3>
+      </div>
+
+      <div class="product-rating">Rating : 4.1/5⭐ (85)</div>
+
+      <div class="product-info">
+        <p>
+          Brand: Denver <br>
+          Item Form: Aerosol <br>
+          Scent: 150 ML <br>
+          Number of Items: 1 <br>
+          Net Quantity: 165.0 Milliliters <br>
+          Item Volume: 165 Millilitres <br>
+          Use for: Whole Body <br>
+          Application Method: Spray <br>
+          Target Audience: Men
+        </p>
+      </div>
+
+      <div class="product-actions">
+        <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+        <a href="#" class="btn btn-warning"
+          onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to Cart</a>
+      </div>
+
+      <div class="product-specs">
+        <p>
+          Stay fresh and confident all day with Denver Hamilton Deodorant Body Spray for Men. Designed for modern men,
+          this long-lasting deodorant provides effective odour protection while delivering a bold and refreshing
+          fragrance. Its premium formula helps keep you feeling clean and energised throughout the day, whether you're
+          at work, the gym, or on the go.
+        </p>
+        <p>
+          The easy-to-use aerosol spray ensures even application and quick drying without leaving a sticky residue. With
+          its masculine scent and reliable freshness, Denver Hamilton is the perfect choice for daily grooming and
+          special occasions alike.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

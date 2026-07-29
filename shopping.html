@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+
+        </button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link active" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="#Todays Special">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero-carousel-wrap">
+    <div class="carousel hero-carousel" data-interval="4000">
+      <div class="carousel-track">
+        <div class="carousel-slide">
+          <img src="/Source/Shopping/test1.png" alt="Slide 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="/Source/Shopping/test 2.png" alt="Slide 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="/Source/Shopping/test 3.png" alt="Slide 3">
+        </div>
+      </div>
+      <button class="carousel-btn prev" aria-label="Previous">
+        < </button>
+          <button class="carousel-btn next" aria-label="Next"> > </button>
+    </div>
+  </div>
+
+  <div id="Todays Special"></div>
+
+  <section class="special">
+    <h2 class="section-title">Todays Special</h2>
+    <div class="card-grid-special">
+      <div class="card">
+        <a href="item1.html">
+          <img src="/Source/Shopping/Logitech Thumbnail.png" class="card-img-top" alt="Item 1">
+        </a>
+        <div class="card-body">
+          <a href="item1.html" style="text-decoration:none;">
+            <h5 class="card-title">Logitech G402 Mouse</h5>
+          </a>
+          <p class="card-text">One of the most popular budget Gaming Mouse.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,990</strong>
+            <p class="discount">-69%</p>
+          </div>
+          <p class="rating-row">⭐ 4.3 <em class="rating-count">(200)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add to
+            Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="item2.html">
+          <img src="/Source/Shopping/Denver.jpg" class="card-img-top" alt="Denver Perfume">
+        </a>
+        <div class="card-body">
+          <a href="item2.html" style="text-decoration:none;">
+            <h5 class="card-title">Denver Perfume</h5>
+          </a>
+          <p class="card-text">Its the real secret of my and many more's success.</p>
+          <div class="price-row">
+            <strong class="price">Rs.450</strong>
+            <p class="discount">-30%</p>
+          </div>
+          <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to
+            Cart</a>
+        </div>
+      </div>
+      <div class="card">
+        <a href="item3.html">
+          <img src="/Source/Shopping/ben_10_OG_omnitrix.png" class="card-img-top" alt="Omnitrix">
+        </a>
+        <div class="card-body">
+          <a href="item3.html" style="text-decoration:none;">
+            <h5 class="card-title">Omnitrix</h5>
+          </a>
+          <p class="card-text">It started when an alien device did what it did.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,200</strong>
+            <p class="discount">-15%</p>
+          </div>
+          <p class="rating-row">⭐ 4.6 <em class="rating-count">(340)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Omnitrix', 12000, '/Source/Shopping/ben_10_OG_omnitrix.png')">Add to
+            Cart</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="items-section">
+    <div class="card-grid">
+
+      <div class="card">
+        <a href="item1.html">
+          <img src="/Source/Shopping/Logitech Thumbnail.png" class="card-img-top" alt="Item 1">
+        </a>
+        <div class="card-body">
+          <a href="item1.html" style="text-decoration:none;">
+            <h5 class="card-title">Logitech G402 Mouse</h5>
+          </a>
+          <p class="card-text">One of the most popular budget Gaming Mouse.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,990</strong>
+            <p class="discount">-69%</p>
+          </div>
+          <p class="rating-row">⭐ 4.3 <em class="rating-count">(200)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add to
+            Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item2.html">
+          <img src="/Source/Shopping/Denver.jpg" class="card-img-top" alt="Denver Perfume">
+        </a>
+        <div class="card-body">
+          <a href="item2.html" style="text-decoration:none;">
+            <h5 class="card-title">Denver Perfume</h5>
+          </a>
+          <p class="card-text">Its the real secret of my and many more's success.</p>
+          <div class="price-row">
+            <strong class="price">Rs.450</strong>
+            <p class="discount">-30%</p>
+          </div>
+          <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item3.html">
+          <img src="/Source/Shopping/ben_10_OG_omnitrix.png" class="card-img-top" alt="Omnitrix">
+        </a>
+        <div class="card-body">
+          <a href="item3.html" style="text-decoration:none;">
+            <h5 class="card-title">Omnitrix</h5>
+          </a>
+          <p class="card-text">It started when an alien device did what it did.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,200</strong>
+            <p class="discount">-15%</p>
+          </div>
+          <p class="rating-row">⭐ 4.6 <em class="rating-count">(340)</em></p>
+           <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Omnitrix', 12000, '/Source/Shopping/ben_10_OG_omnitrix.png')">Add to
+            Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item4.html">
+          <img src="/Source/Shopping/Pixel Art.jpg" class="card-img-top" alt="Item 4">
+        </a>
+        <div class="card-body">
+          <a href="item4.html" style="text-decoration:none;">
+            <h5 class="card-title">Pixel Art</h5>
+          </a>
+          <p class="card-text"> Some Pixel Art You Might Like</p>
+          <div class="price-row">
+            <strong class="price">Rs.120</strong>
+            <p class="discount">-25%</p>
+          </div>
+          <p class="rating-row">⭐ 4.8 <em class="rating-count">(140)</em></p>
+           <a href="#" class="btn btn-sm btn-warning" onclick="addToCart(event, 'Pixel Art', 120, '/Source/Shopping/Pixel Art.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item5.html">
+          <img src="/Source/Shopping/PS 5 Controller.jpeg" class="card-img-top" alt="Item 5">
+        </a>
+        <div class="card-body">
+          <a href="item5.html" style="text-decoration:none;">
+            <h5 class="card-title">PlayStation 5 Controller</h5>
+          </a>
+          <p class="card-text"> The Orignal Controller for Play Station </p>
+          <div class="price-row">
+            <strong class="price">Rs.8,499</strong>
+            <p class="discount">-10%</p>
+          </div>
+          <p class="rating-row">⭐ 4.7 <em class="rating-count">(512)</em></p>
+           <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'PlayStation 5 Controller', 8499, '/Source/Shopping/PS 5 Controller.jpeg')">Add to
+            Cart</a>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <a href="item6.html">
+          <img src="/Source/Shopping/45 (2).jpg" class="card-img-top" alt="45-Piece Tool Kit">
+        </a>
+        <div class="card-body">
+          <a href="item6.html" style="text-decoration:none;">
+            <h5 class="card-title">45-Piece Home Tool Kit</h5>
+          </a>
+          <p class="card-text">Everyday hand tools in a carry case.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,800</strong>
+            <p class="discount">-15%</p>
+          </div>
+          <p class="rating-row">⭐ 4.2 <em class="rating-count">(58)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item7.html">
+          <img src="/Source/Shopping/RC 3.jpg" class="card-img-top" alt="Remote Control Car">
+        </a>
+        <div class="card-body">
+          <a href="item7.html" style="text-decoration:none;">
+            <h5 class="card-title">Remote Control Car</h5>
+          </a>
+          <p class="card-text">High-speed RC car for kids and adults.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,200</strong>
+            <p class="discount">-30%</p>
+          </div>
+          <p class="rating-row">⭐ 4.6 <em class="rating-count">(210)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Remote Control Car', 1200, '/Source/Shopping/RC 3.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item8.html">
+          <img src="/Source/Shopping/MC 1.jpg" class="card-img-top" alt="Building Blocks Set">
+        </a>
+        <div class="card-body">
+          <a href="item8.html" style="text-decoration:none;">
+            <h5 class="card-title">Building Blocks Set</h5>
+          </a>
+          <p class="card-text">Creative building blocks for all ages.</p>
+          <div class="price-row">
+            <strong class="price">Rs.950</strong>
+            <p class="discount">-10%</p>
+          </div>
+          <p class="rating-row">⭐ 4.7 <em class="rating-count">(180)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Building Blocks Set', 950, '/Source/Shopping/MC 1.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item9.html">
+          <img src="/Source/Shopping/Vase 1.jpg" class="card-img-top" alt="Ceramic Vase Set">
+        </a>
+        <div class="card-body">
+          <a href="item9.html" style="text-decoration:none;">
+            <h5 class="card-title">Ceramic Vase Set</h5>
+          </a>
+          <p class="card-text">Handcrafted decorative vases, set of 2.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,450</strong>
+            <p class="discount">-18%</p>
+          </div>
+          <p class="rating-row">⭐ 4.5 <em class="rating-count">(64)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Ceramic Vase Set', 1450, '/Source/Shopping/Vase 1.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

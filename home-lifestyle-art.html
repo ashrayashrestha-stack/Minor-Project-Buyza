@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza - Home, Lifestyle, Art</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation"></button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="shopping.html#Todays Special">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a class="nav-link active" href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="shopping.html">Home</a></li>
+      <li class="active">Home, Lifestyle, Art</li>
+    </ol>
+  </nav>
+
+  <section class="items-section">
+    <h2 class="section-title">Home, Lifestyle, Art</h2>
+    <div class="card-grid">
+
+<div class="card">
+        <a href="item4.html">
+          <img src="/Source/Shopping/Pixel Art.jpg" class="card-img-top" alt="Item 4">
+        </a>
+        <div class="card-body">
+          <a href="item4.html" style="text-decoration:none;">
+            <h5 class="card-title">Pixel Art</h5>
+          </a>
+          <p class="card-text"> Some Pixel Art You Might Like</p>
+          <div class="price-row">
+            <strong class="price">Rs.120</strong>
+            <p class="discount">-25%</p>
+          </div>
+          <p class="rating-row">⭐ 4.8 <em class="rating-count">(140)</em></p>
+           <a href="#" class="btn btn-sm btn-warning" onclick="addToCart(event, 'Pixel Art', 120, '/Source/Shopping/Pixel Art.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item9.html">
+          <img src="/Source/Shopping/Vase 1.jpg" class="card-img-top" alt="Ceramic Vase Set">
+        </a>
+        <div class="card-body">
+          <a href="item9.html" style="text-decoration:none;">
+            <h5 class="card-title">Ceramic Vase Set</h5>
+          </a>
+          <p class="card-text">Handcrafted decorative vases, set of 2.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,450</strong>
+            <p class="discount">-18%</p>
+          </div>
+          <p class="rating-row">⭐ 4.5 <em class="rating-count">(64)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Ceramic Vase Set', 1450, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="#">
+          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Scented Candle Set">
+        </a>
+        <div class="card-body">
+          <a href="#" style="text-decoration:none;">
+            <h5 class="card-title">Scented Candle Set (4pcs)</h5>
+          </a>
+          <p class="card-text">Soy wax candles in assorted fragrances.</p>
+          <div class="price-row">
+            <strong class="price">Rs.850</strong>
+            <p class="discount">-12%</p>
+          </div>
+          <p class="rating-row">⭐ 4.3 <em class="rating-count">(88)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Scented Candle Set', 850, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

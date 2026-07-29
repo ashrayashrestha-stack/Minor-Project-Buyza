@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyza</title>
+    <link rel="icon" href="/Source/Shopping/Logo B.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a class="navbar-brand" href="shopping.html">
+                    <img src="Source/Shopping/Logo B.png" alt="Buyza">
+                </a>
+                <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+                </button>
+                <div class="navbar-menu" id="navbarMenu">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="shopping.html">Home</a></li>
+                        <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+                        <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                        <li class="nav-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#">Categories</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                                <li><a class="nav-link active" href="electronic-accessories.html">Electronic
+                                        Accessories</a></li>
+                                <li><a href="beauty-products.html">Beauty Products</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <form class="search-form" role="search">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit">Search</button>
+                </form>
+                <a class="cart-link" href="cart.html">
+                    <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+                </a>
+                <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+                <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+                <div class="profile-menu" id="profileMenu">
+                    <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+                    <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#" onclick="logOut()">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li><a href="shopping.html">Home</a></li>
+            <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+            <li><a href="#">Entertainment</a></li>
+            <li class="active">PS 5 Controller</li>
+        </ol>
+    </nav>
+
+    <div class="product-page">
+        <div class="product-media">
+            <div class="carousel product-carousel" data-interval="4000">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/PS 5 Controller.jpeg" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Ps 5 Controller1.jpg" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/PS 5 controller2.jpg" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/PS 5 Controller3.jpg" alt="Pixel Art">
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Previous">
+                    < </button>
+                        <button class="carousel-btn next" aria-label="Next"> > </button>
+            </div>
+
+            <div class="product-price-box">
+                <div class="price-row">
+                    <span class="price">Rs. 8,499</span>
+                </div>
+                <div class="discount">10% off</div>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <div class="product-title-box">
+                <h3>PlayStation 5 DualSense Wireless Controller - Immersive Gaming Controller with Adaptive Triggers and
+                    Haptic Feedback
+                </h3>
+            </div>
+
+            <div class="product-rating">Rating : 4.7/5⭐(512)</div>
+
+            <div class="product-info">
+                <p>
+                    Brand: Sony <br>
+                    Model Name: DualSense Wireless Controller <br>
+                    Colour: White & Midnight Black <br>
+                    Connectivity: Bluetooth / USB Type-C <br>
+                    Compatible Platform: PlayStation 5, Playstation 4, PC, Mobile <br>
+                    Battery Type: Rechargeable Lithium-Ion <br>
+                    Special Features: Adaptive Triggers, Haptic Feedback <br>
+                    Built-in Features: Microphone, Speaker, Motion Sensor <br>
+                    Use for: Gaming and Entertainment <br>
+                </p>
+            </div>
+
+            <div class="product-actions">
+                <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+                <a href="#" class="btn btn-warning"
+                    onclick="addToCart(event, 'PlayStation 5 Controller', 8499, '/Source/Shopping/PS 5 Controller.jpeg')">Add
+                    to Cart</a>
+            </div>
+
+            <div class="product-specs">
+                <p>
+                    Experience next-generation gaming with the PlayStation 5 DualSense Wireless Controller.
+                    Featuring adaptive triggers and immersive haptic feedback, it delivers realistic sensations
+                    that bring every game to life. The ergonomic design ensures comfort during long gaming sessions.
+                </p>
+                <p>
+                    Equipped with a built-in microphone, motion controls, and rechargeable battery, the DualSense
+                    controller offers seamless wireless gameplay and enhanced interaction across a wide range of PS5
+                    titles.
+                    Perfect for casual players and competitive gamers alike.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="toggleLogin()">x</button>
+            <h2>Login</h2>
+            <form onsubmit="return handleLogin(event)">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+                <button type="submit" class="btn btn-warning login-submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a class="nav-link active" href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="shopping.html">Home</a></li>
+      <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+      <li><a href="#">Mice</a></li>
+      <li class="active">Logitech G402</li>
+    </ol>
+  </nav>
+
+  <div class="product-page">
+    <div class="product-media">
+      <div class="carousel product-carousel" data-interval="4000">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/Logitech.jpg" alt="Logitech G402 view 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/Logitech 2.jpg" alt="Logitech G402 view 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/logitech3.jpg" alt="Logitech G402 view 3">
+          </div>
+        </div>
+        <button class="carousel-btn prev" aria-label="Previous">
+          < </button>
+            <button class="carousel-btn next" aria-label="Next"> > </button>
+      </div>
+
+      <div class="product-price-box">
+        <div class="price-row">
+          <span class="price">Rs. 1,990</span>
+          <span class="original-price">Rs. 2,499</span>
+        </div>
+        <div class="discount">20% off</div>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <div class="product-title-box">
+        <h3>Logitech G402 Hyperion Fury USB Wired Gaming Mouse, 4,000 DPI, Lightweight, 8 Programmable Buttons,
+          Compatible for PC/Mac - Black</h3>
+      </div>
+
+      <div class="product-rating">Rating : 4.2/5⭐(200)</div>
+
+      <div class="product-info">
+        <p>
+          Brand: Logitech G <br>
+          Colour: Black <br>
+          Connectivity Technology: USB <br>
+          Special Feature: RGB <br>
+          Movement Detection Technology: Laser
+        </p>
+      </div>
+
+      <div class="product-actions">
+        <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+        <a href="#" class="btn btn-warning"
+          onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add
+          to Cart</a>
+      </div>
+
+      <div class="product-specs">
+        <p>
+          The Logitech G402 Hyperion Fury is a high-performance gaming mouse designed for speed, precision, and comfort.
+          Featuring Logitech's advanced Fusion Engine sensor technology, it delivers accurate tracking even during
+          fast-paced gameplay. With up to 4,000 DPI sensitivity and 8 programmable buttons, the G402 allows gamers to
+          customize controls and react instantly in competitive matches.
+        </p>
+        <p>
+          Built with a lightweight ergonomic design, the G402 provides a comfortable grip for extended gaming sessions.
+          Its durable construction and responsive buttons ensure reliable performance, while customizable RGB lighting
+          adds a stylish touch to any gaming setup. Whether you're playing FPS, MOBA, or strategy games, the Logitech
+          G402 offers the accuracy and responsiveness needed to stay ahead of the competition.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

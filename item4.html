@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyza</title>
+    <link rel="icon" href="/Source/Shopping/Logo B.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a class="navbar-brand" href="shopping.html">
+                    <img src="Source/Shopping/Logo B.png" alt="Buyza">
+                </a>
+                <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+                </button>
+                <div class="navbar-menu" id="navbarMenu">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="shopping.html">Home</a></li>
+                        <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+                        <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                        <li class="nav-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#">Categories</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                                <li><a class="nav-link active" href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                                <li><a href="beauty-products.html">Beauty Products</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <form class="search-form" role="search">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit">Search</button>
+                </form>
+                <a class="cart-link" href="cart.html">
+                    <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+                </a>
+                <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+                <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+                <div class="profile-menu" id="profileMenu">
+                    <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+                    <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#" onclick="logOut()">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li><a href="shopping.html">Home</a></li>
+            <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+            <li><a href="#">Art</a></li>
+            <li class="active">Pixel Art</li>
+        </ol>
+    </nav>
+
+    <div class="product-page">
+        <div class="product-media">
+            <div class="carousel product-carousel" data-interval="4000">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Pixel 1.png" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Pixel 2.png" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Pixel 3.png" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Pixel 4.png" alt="Pixel Art">
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Previous">
+                    < </button>
+                        <button class="carousel-btn next" aria-label="Next"> > </button>
+            </div>
+
+            <div class="product-price-box">
+                <div class="price-row">
+                    <span class="price">Rs. 120</span>
+                </div>
+                <div class="discount">25% off</div>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <div class="product-title-box">
+                <h3>Pixel Art Element Pack - Heart, Water, Meat & Fire Icons for Games, UI Design and Creative Projects
+                </h3>
+            </div>
+
+            <div class="product-rating">Rating : 4.8/5⭐(140)</div>
+
+            <div class="product-info">
+                <p>
+                    Brand: Unknown <br>
+                    Art Style: Pixel Art <br>
+                    Theme: RPG / Survival Game Elements <br>
+                    Resolution: High Quality Pixel Graphics <br>
+                    Number of Assets: 4 <br>
+                    File Format: PNG <br>
+                    Includes: Heart, Water Drop, Meat, Fire Icons <br>
+                    Use for: Game Development, UI Design, Creative Projects <br>
+                    Compatibility: Unity, Godot, Unreal Engine, RPG Maker and More <br>
+                </p>
+            </div>
+
+            <div class="product-actions">
+                <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+                <a href="#" class="btn btn-warning"
+                    onclick=" addToCart(event, 'Pixel Art', 120, '/Source/Shopping/Pixel Art.jpg')">Add to Cart</a>
+            </div>
+
+            <div class="product-specs">
+                <p>
+                    A collection of handcrafted pixel art icons featuring essential survival and RPG elements.
+                    Designed with a retro gaming aesthetic, these assets are perfect for health systems,
+                    stamina bars, crafting menus, inventory screens, and resource indicators.
+                </p>
+                <p>
+                    Suitable for indie games, mobile games, web projects, and creative digital artwork.
+                    The clean pixel-perfect design ensures excellent visibility while maintaining a classic
+                    retro style inspired by vintage video games.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="toggleLogin()">x</button>
+            <h2>Login</h2>
+            <form onsubmit="return handleLogin(event)">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+                <button type="submit" class="btn btn-warning login-submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

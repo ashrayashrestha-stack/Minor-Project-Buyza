@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyza</title>
+    <link rel="icon" href="/Source/Shopping/Logo B.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a class="navbar-brand" href="shopping.html">
+                    <img src="Source/Shopping/Logo B.png" alt="Buyza">
+                </a>
+                <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+                </button>
+                <div class="navbar-menu" id="navbarMenu">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="shopping.html">Home</a></li>
+                        <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+                        <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                        <li class="nav-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#">Categories</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link " href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                                <li><a class="nav-link active" href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                                <li><a href="beauty-products.html">Beauty Products</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <form class="search-form" role="search">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit">Search</button>
+                </form>
+                <a class="cart-link" href="cart.html">
+                    <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+                </a>
+                <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+                <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+                <div class="profile-menu" id="profileMenu">
+                    <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+                    <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="#" onclick="logOut()">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <nav class="breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb-list">
+            <li><a href="shopping.html">Home</a></li>
+            <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+            <li><a href="#">Showpiece</a></li>
+            <li class="active">Ceramic Vase</li>
+        </ol>
+    </nav>
+
+    <div class="product-page">
+        <div class="product-media">
+            <div class="carousel product-carousel" data-interval="4000">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Vase 1.jpg" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Vase 2.jpg" alt="Pixel Art">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="/Source/Shopping/Vase 3.jpg" alt="Pixel Art">
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Previous">
+                    < </button>
+                        <button class="carousel-btn next" aria-label="Next"> > </button>
+            </div>
+
+            <div class="product-price-box">
+                <div class="price-row">
+                    <span class="price">Rs. 1,450</span>
+                </div>
+                <div class="discount">18% off</div>
+            </div>
+        </div>
+
+        <div class="product-details">
+            <div class="product-title-box">
+                <h3>Ceramic Vase Set - Handcrafted Decorative Flower Vases for Home, Office and Modern Interior Décor
+                </h3>
+            </div>
+
+            <div class="product-rating">Rating :4.5/5⭐(64)</div>
+
+            <div class="product-info">
+                <p>
+                    Product Type: Ceramic Vase Set <br>
+                    Quantity: Set of 2 Vases <br>
+                    Material: Premium Ceramic <br>
+                    Finish: Smooth Matte Glaze <br>
+                    Design Style: Modern & Minimalist <br>
+                    Use for: Fresh Flowers, Dried Flowers and Decorative Arrangements <br>
+                    Placement: Living Room, Bedroom, Office and Dining Area <br>
+                    Maintenance: Easy to Clean <br>
+                    Suitable For: Home Decoration and Gift Giving
+                </p>
+            </div>
+
+            <div class="product-actions">
+                <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+                 <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Ceramic Vase Set', 1450, '/Source/Shopping/Vase 1.jpg')">Add to Cart</a>
+            </div>
+
+            <div class="product-specs">
+                <p>
+                    Enhance your living space with this elegant Ceramic Vase Set, crafted to complement
+                    modern, contemporary and minimalist interiors. The stylish design makes it a beautiful
+                    centrepiece for tables, shelves, desks and decorative displays.
+                </p>
+                <p>
+                    Made from high-quality ceramic, these vases offer durability and timeless appeal.
+                    Perfect for displaying fresh blooms, dried arrangements or as standalone decorative
+                    accents that add sophistication to any room.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="toggleLogin()">x</button>
+            <h2>Login</h2>
+            <form onsubmit="return handleLogin(event)">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+                <button type="submit" class="btn btn-warning login-submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

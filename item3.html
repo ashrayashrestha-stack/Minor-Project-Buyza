@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link active" href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="shopping.html">Home</a></li>
+      <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+      <li><a href="#">Action Figures & Collectibles</a></li>
+      <li class="active">Ben 10 Classic Omnitrix</li>
+    </ol>
+  </nav>
+
+  <div class="product-page">
+<div class="product-media">
+      <div class="carousel product-carousel" data-interval="4000">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/ben_10_OG_omnitrix.png" alt="Omnitrix">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/Omnitrix.jpg" alt="Omnitrix">
+          </div>
+          <div class="carousel-slide">
+            <img src="/Source/Shopping/omnitrix 2.png" alt="Omnitrix">
+          </div>
+        </div>
+        <button class="carousel-btn prev" aria-label="Previous">
+          < </button>
+            <button class="carousel-btn next" aria-label="Next"> > </button>
+      </div>
+
+      <div class="product-price-box">
+        <div class="price-row">
+          <span class="price">Rs. 1,200</span>
+        </div>
+        <div class="discount">15% off</div>
+      </div>
+    </div>
+
+    <div class="product-details">
+      <div class="product-title-box">
+        <h3>Ben 10 Watch with Sound Effects, Role Play Watch for Kids, Fun Costume Accessory for Boys, Collectors</h3>
+      </div>
+
+      <div class="product-rating">Rating : 5/5⭐ (340)</div>
+
+      <div class="product-info">
+        <p>
+          Item Form: Wristwatch Toy <br>
+          Model Name: Classic Omnitrix <br>
+          Material: Plastic <br>
+          Number of Items: 1 <br>
+          Recommended Age: 4 Years and Up <br>
+          Power Source: Battery Operated (Included) <br>
+          Special Feature: Lights and Sound Effects <br>
+          Use for: Role Play / Collectible <br>
+          Target Audience: Kids, Fans of Ben 10
+        </p>
+      </div>
+
+      <div class="product-actions">
+        <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
+        <a href="#" class="btn btn-warning" onclick="addToCart(event, 'Omnitrix', 1200, '/Source/Shopping/ben_10_OG_omnitrix.png')">Add to Cart</a>
+      </div>
+
+      <div class="product-specs">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem nemo iste voluptate, perspiciatis
+          facere quos cumque sapiente reiciendis impedit iure! Magnam, similique nisi officiis magni quas
+          repudiandae maiores dolore debitis.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Id facilis quos officiis. Tenetur, id
+          suscipit architecto dolores aspernatur modi earum provident corporis? Lorem, ipsum dolor sit amet
+          consectetur.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

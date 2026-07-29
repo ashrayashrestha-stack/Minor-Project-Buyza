@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyza - Electronic Accessories</title>
+  <link rel="icon" href="/Source/Shopping/Logo B.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="navbar-container">
+        <a class="navbar-brand" href="shopping.html">
+          <img src="Source/Shopping/Logo B.png" alt="Buyza">
+        </a>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation"></button>
+        <div class="navbar-menu" id="navbarMenu">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="shopping.html">Home</a></li>
+            <li><a class="nav-link" href="shopping.html#Todays Special">Todays Special</a></li>
+            <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
+            <li class="nav-dropdown">
+              <a class="nav-link dropdown-toggle" href="#">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                <li><a class="nav-link active" href="electronic-accessories.html">Electronic Accessories</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <form class="search-form" role="search">
+          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <a class="cart-link" href="cart.html">
+          <img class="cart-icon" src="/Source/e46e34187c03f703c6f7ce552ea76b63.png" alt="Cart">
+        </a>
+        <button class="theme-btn" onclick="toggleDarkMode(this)">🌙</button>
+        <button class="login-btn" id="loginBtn" onclick="toggleLogin()">👤</button>
+        <div class="profile-menu" id="profileMenu">
+          <button class="profile-btn" onclick="toggleDropdown()">👤 ▾</button>
+          <div class="dropdown-menu profile-dropdown" id="profileDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+            <a href="#" onclick="logOut()">Log Out</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="breadcrumb">
+    <ol class="breadcrumb-list">
+      <li><a href="shopping.html">Home</a></li>
+      <li class="active">Electronic Accessories</li>
+    </ol>
+  </nav>
+
+  <section class="items-section">
+    <h2 class="section-title">Electronic Accessories</h2>
+    <div class="card-grid">
+
+      <div class="card">
+        <a href="item1.html">
+          <img src="/Source/Shopping/Logitech Thumbnail.png" class="card-img-top" alt="Logitech G402 Mouse">
+        </a>
+        <div class="card-body">
+          <a href="item1.html" style="text-decoration:none;">
+            <h5 class="card-title">Logitech G402 Mouse</h5>
+          </a>
+          <p class="card-text">One of the most popular budget Gaming Mouse.</p>
+          <div class="price-row">
+            <strong class="price">Rs.1,990</strong>
+            <p class="discount">-69%</p>
+          </div>
+          <p class="rating-row">⭐ 4.3 <em class="rating-count">(200)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="item5.html">
+          <img src="/Source/Shopping/PS 5 Controller.jpeg" class="card-img-top" alt="PlayStation 5 Controller">
+        </a>
+        <div class="card-body">
+          <a href="item5.html" style="text-decoration:none;">
+            <h5 class="card-title">PlayStation 5 Controller</h5>
+          </a>
+          <p class="card-text">The Original Controller for PlayStation.</p>
+          <div class="price-row">
+            <strong class="price">Rs.8,499</strong>
+            <p class="discount">-10%</p>
+          </div>
+          <p class="rating-row">⭐ 4.7 <em class="rating-count">(512)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'PlayStation 5 Controller', 8499, '/Source/Shopping/PS 5 Controller.jpeg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="#">
+          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Fast Charger">
+        </a>
+        <div class="card-body">
+          <a href="#" style="text-decoration:none;">
+            <h5 class="card-title">65W USB-C Fast Charger</h5>
+          </a>
+          <p class="card-text">GaN charger, compact and lightweight.</p>
+          <div class="price-row">
+            <strong class="price">Rs.2,100</strong>
+            <p class="discount">-25%</p>
+          </div>
+          <p class="rating-row">⭐ 4.5 <em class="rating-count">(150)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, '65W USB-C Fast Charger', 2100, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <a href="#">
+          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Bluetooth Earbuds">
+        </a>
+        <div class="card-body">
+          <a href="#" style="text-decoration:none;">
+            <h5 class="card-title">Wireless Bluetooth Earbuds</h5>
+          </a>
+          <p class="card-text">Noise-cancelling, 24hr battery life.</p>
+          <div class="price-row">
+            <strong class="price">Rs.3,200</strong>
+            <p class="discount">-30%</p>
+          </div>
+          <p class="rating-row">⭐ 4.6 <em class="rating-count">(268)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Wireless Bluetooth Earbuds', 3200, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="toggleLogin()">x</button>
+      <h2>Login</h2>
+      <form onsubmit="return handleLogin(event)">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required>
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+
+        <button type="submit" class="btn btn-warning login-submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
