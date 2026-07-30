@@ -27,8 +27,9 @@
                         <li class="nav-dropdown">
                             <a class="nav-link dropdown-toggle" href="#">Categories</a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link active" href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
-                                <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+                                <li><a class="nav-link " href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
+                                <li><a class="nav-link active" href="home-lifestyle-art.html">Home, Lifestyle, Art</a>
+                                </li>
                                 <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
                                 <li><a href="beauty-products.html">Beauty Products</a></li>
                             </ul>
@@ -60,8 +61,8 @@
     <nav class="breadcrumb" aria-label="breadcrumb">
         <ol class="breadcrumb-list">
             <li><a href="shopping.html">Home</a></li>
-            <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
-            <li class="active">Remote Control Car</li>
+            <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
+            <li class="active">Scented Candle Set (4pcs)</li>
         </ol>
     </nav>
 
@@ -70,16 +71,13 @@
             <div class="carousel product-carousel" data-interval="4000">
                 <div class="carousel-track">
                     <div class="carousel-slide">
-                        <img src="/Source/Shopping/RC 1.jpg" alt="Pixel Art">
+                        <img src="/Source/Shopping/Scented Candle.webp" alt="Pixel Art">
                     </div>
                     <div class="carousel-slide">
-                        <img src="/Source/Shopping/RC 2.jpg" alt="Pixel Art">
+                        <img src="/Source/Shopping/Scented 2.webp" alt="Pixel Art">
                     </div>
                     <div class="carousel-slide">
-                        <img src="/Source/Shopping/RC 3.jpg" alt="Pixel Art">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="/Source/Shopping/RC 4.jpg" alt="Pixel Art">
+                        <img src="/Source/Shopping/Scented 3.webp" alt="Pixel Art">
                     </div>
                 </div>
                 <button class="carousel-btn prev" aria-label="Previous">
@@ -89,55 +87,65 @@
 
             <div class="product-price-box">
                 <div class="price-row">
-                    <span class="price">Rs. 1,200</span>
+                    <span class="price">Rs. 850</span>
                 </div>
-                <div class="discount">30% off</div>
+                <div class="discount">12% off</div>
             </div>
         </div>
 
         <div class="product-details">
             <div class="product-title-box">
-                <h3>Remote Control Car - High-Speed Rechargeable RC Racing Car with 2.4GHz Remote for Kids and Adults
+                <h3>Scented Candle Set (4pcs)
                 </h3>
             </div>
 
-            <div class="product-rating">Rating :4.6/5⭐(210)</div>
+            <div class="product-rating">Rating :4.3/5⭐(88)</div>
 
             <div class="product-info">
                 <p>
-                    Product Type: Remote Control Car <br>
-                    Control System: 2.4GHz Wireless Remote <br>
-                    Power Source: Rechargeable Battery <br>
-                    Charging Method: USB Charging <br>
-                    Maximum Speed: High-Speed Racing Performance <br>
-                    Control Range: Long Distance Remote Operation <br>
-                    Material: Durable ABS Plastic <br>
-                    Recommended Age: 6 Years and Up <br>
-                    Suitable For: Kids, Teens and Adults
+                    Product Type: Scented Candle Set <br>
+                    Quantity: Set of 4 Candles <br>
+                    Material: Premium Soy Wax <br>
+                    Fragrance: Assorted Natural Scents <br>
+                    Burn Time: Long-Lasting & Clean Burning <br>
+                    Design Style: Elegant & Modern <br>
+                    Placement: Living Room, Bedroom, Bathroom and Office <br>
+                    Maintenance: Easy to Clean <br>
+                    Suitable For: Home Decoration, Gift Giving and Special Occasions
                 </p>
             </div>
 
             <div class="product-actions">
                 <a href="#" class="btn btn-info"
-                    onclick="buyNow(event, 'Remote Control Car', 1200, '/Source/Shopping/RC 3.jpg','item7.html')">Buy
+                    onclick="buyNow(event, 'Scented Candle Set', 850, '/Source/Shopping/Scented Candle.webp', 'item10.html')">Buy
                     Now</a>
                 <a href="#" class="btn btn-warning"
-                    onclick="addToCart(event, 'Remote Control Car', 1200, '/Source/Shopping/RC 3.jpg','item7.html')">Add
-                    to Cart</a>
+                    onclick="addToCart(event, 'Scented Candle Set', 850, '/Source/Shopping/Scented Candle.webp', 'item10.html')">Add
+                    to
+                    Cart</a>
             </div>
 
             <div class="product-specs">
                 <p>
-                    Enjoy fast-paced racing action with this high-performance Remote Control Car. Designed for
-                    speed, agility and durability, it delivers smooth handling and responsive controls for both
-                    indoor and outdoor play.
+                    Enhance your home atmosphere with this beautifully crafted Scented Candle Set. Made from premium soy
+                    wax, these candles release soothing fragrances that create a warm, relaxing and inviting
+                    environment.
                 </p>
                 <p>
-                    Featuring a rechargeable battery and reliable 2.4GHz wireless technology, the car offers
-                    extended playtime and interference-free operation. A perfect gift for young racing enthusiasts
-                    and hobbyists looking for exciting RC adventures.
+                    Perfect for bedrooms, living rooms, bathrooms and office spaces, the elegant design complements
+                    modern and contemporary interiors. Whether you're unwinding after a long day, hosting guests or
+                    looking for a thoughtful gift, this scented candle set adds comfort and style to any space.
                 </p>
             </div>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="addedToCartOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="closeAddedToCart()">x</button>
+            <h2>Added to Cart!</h2>
+            <p class="order-confirm-text" id="addedToCartText"></p>
+            <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
         </div>
     </div>
 

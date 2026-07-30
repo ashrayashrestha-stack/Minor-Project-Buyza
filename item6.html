@@ -33,9 +33,11 @@
                                 <li><a href="beauty-products.html">Beauty Products</a></li>
                             </ul>
                         </li>
+                    </ul>
                 </div>
-                <form class="search-form" role="search">
-                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                <form class="search-form" role="search" onsubmit="return goToSearchPage(event)">
+                    <input class="search-input" type="search" id="searchInput" placeholder="🔍 Search"
+                        autocomplete="off">
                     <button class="search-btn" type="submit">Search</button>
                 </form>
                 <a class="cart-link" href="cart.html">
@@ -117,9 +119,12 @@
             </div>
 
             <div class="product-actions">
-                <a href="#" class="btn btn-info" target="_blank">Buy Now</a>
-                <a href="#" class="btn btn-sm btn-warning"
-                    onclick="addToCart(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg')">Add to
+                <a href="#" class="btn btn-info"
+                    onclick="buyNow(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg','item6.html')">Buy
+                    Now</a>
+                <a href="#" class="btn btn-warning"
+                    onclick="addToCart(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg','item6.html')">Add
+                    to
                     Cart</a>
             </div>
 
@@ -135,6 +140,43 @@
                     whenever needed.
                 </p>
             </div>
+        </div>
+    </div>
+
+
+    <div class="login-overlay" id="checkoutOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="closeCheckout()">x</button>
+            <h2>Checkout</h2>
+            <p class="checkout-total" id="checkoutTotal">Total: Rs.0</p>
+            <form onsubmit="return handleCheckout(event)">
+                <label for="checkoutAddress">Delivery Address</label>
+                <input type="text" id="checkoutAddress" placeholder="House no, Street, City" required>
+
+                <label for="checkoutPhone">Phone Number</label>
+                <input type="tel" id="checkoutPhone" placeholder="98XXXXXXXX" required>
+
+                <button type="submit" class="btn btn-success login-submit">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="login-overlay" id="orderConfirmOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="closeOrderConfirm()">x</button>
+            <h2>Order Placed!</h2>
+            <p class="order-confirm-text" id="orderConfirmText"></p>
+            <button class="btn btn-warning login-submit" type="button" onclick="closeOrderConfirm()">OK</button>
+        </div>
+    </div>
+
+
+    <div class="login-overlay" id="addedToCartOverlay">
+        <div class="login-box">
+            <button class="login-close" onclick="closeAddedToCart()">x</button>
+            <h2>Added to Cart!</h2>
+            <p class="order-confirm-text" id="addedToCartText"></p>
+            <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
         </div>
     </div>
 

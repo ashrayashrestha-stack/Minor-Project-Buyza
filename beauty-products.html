@@ -33,8 +33,8 @@
             </li>
           </ul>
         </div>
-        <form class="search-form" role="search">
-          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+        <form class="search-form" role="search" onsubmit="return goToSearchPage(event)">
+          <input class="search-input" type="search" id="searchInput" placeholder="🔍 Search" autocomplete="off">
           <button class="search-btn" type="submit">Search</button>
         </form>
         <a class="cart-link" href="cart.html">
@@ -80,69 +80,22 @@
           </div>
           <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to Cart</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <a href="#">
-          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Face Moisturizer">
-        </a>
-        <div class="card-body">
-          <a href="#" style="text-decoration:none;">
-            <h5 class="card-title">Hydrating Face Moisturizer</h5>
-          </a>
-          <p class="card-text">Lightweight, non-greasy daily cream.</p>
-          <div class="price-row">
-            <strong class="price">Rs.650</strong>
-            <p class="discount">-20%</p>
-          </div>
-          <p class="rating-row">⭐ 4.4 <em class="rating-count">(142)</em></p>
-          <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Hydrating Face Moisturizer', 650, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <a href="#">
-          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Lipstick Set">
-        </a>
-        <div class="card-body">
-          <a href="#" style="text-decoration:none;">
-            <h5 class="card-title">Matte Lipstick Set (6pcs)</h5>
-          </a>
-          <p class="card-text">Long-lasting, richly pigmented shades.</p>
-          <div class="price-row">
-            <strong class="price">Rs.1,100</strong>
-            <p class="discount">-35%</p>
-          </div>
-          <p class="rating-row">⭐ 4.6 <em class="rating-count">(198)</em></p>
-          <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Matte Lipstick Set', 1100, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
-        </div>
-      </div>
-
-      <div class="card">
-        <a href="#">
-          <img src="/Source/Shopping/placeholder.jpg" class="card-img-top" alt="Hair Dryer">
-        </a>
-        <div class="card-body">
-          <a href="#" style="text-decoration:none;">
-            <h5 class="card-title">Professional Hair Dryer</h5>
-          </a>
-          <p class="card-text">1800W with cool shot and diffuser.</p>
-          <div class="price-row">
-            <strong class="price">Rs.2,400</strong>
-            <p class="discount">-15%</p>
-          </div>
-          <p class="rating-row">⭐ 4.3 <em class="rating-count">(120)</em></p>
-          <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Professional Hair Dryer', 2400, '/Source/Shopping/placeholder.jpg')">Add to Cart</a>
+            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg','item2.html')">Add to Cart</a>
         </div>
       </div>
 
     </div>
   </section>
+
+
+   <div class="login-overlay" id="addedToCartOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="closeAddedToCart()">x</button>
+      <h2>Added to Cart!</h2>
+      <p class="order-confirm-text" id="addedToCartText"></p>
+      <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
+    </div>
+  </div>
 
   <div class="login-overlay" id="loginOverlay">
     <div class="login-box">

@@ -1,33 +1,33 @@
 // =========================================================
-// Buyza
+// Buyza  
 // =========================================================
 
-// Run all the setup functions only when the page has fully loaded
+// Run all setup functions only when the page has loaded
 document.addEventListener("DOMContentLoaded", function () {
   initDropdowns();
   initCarousels();
   checkLoginStatus();
   renderCart();
   applyDarkModeOnLoad();
+  renderSearchResults();
 });
 
-
-// CATEGORIES DROPDOWN MENU
+ 
+// 1. NAVBAR DROPDOWN (Categories menu)
+ 
 
 function initDropdowns() {
   var allDropdowns = document.querySelectorAll(".nav-dropdown");
 
-  // Give every dropdown a click event so it can open/close
   for (var i = 0; i < allDropdowns.length; i++) {
     setupOneDropdown(allDropdowns[i], allDropdowns);
   }
 
-  // If the user clicks anywhere outside a dropdown, close all of them
+  // Clicking anywhere outside a dropdown closes all of them
   document.addEventListener("click", function (event) {
     for (var i = 0; i < allDropdowns.length; i++) {
-      var dropdown = allDropdowns[i];
-      if (!dropdown.contains(event.target)) {
-        dropdown.classList.remove("open");
+      if (!allDropdowns[i].contains(event.target)) {
+        allDropdowns[i].classList.remove("open");
       }
     }
   });
@@ -35,34 +35,25 @@ function initDropdowns() {
 
 function setupOneDropdown(dropdown, allDropdowns) {
   var toggleLink = dropdown.querySelector(".dropdown-toggle");
-  if (!toggleLink) {
-    return;
-  }
+  if (!toggleLink) return;
 
   toggleLink.addEventListener("click", function (event) {
     event.preventDefault();
-
     var wasOpen = dropdown.classList.contains("open");
 
-    // Close every dropdown first
     for (var i = 0; i < allDropdowns.length; i++) {
       allDropdowns[i].classList.remove("open");
     }
-
-    // then reopen this one, unless it was already open (acts like a toggle).
-    if (!wasOpen) {
-      dropdown.classList.add("open");
-    }
+    if (!wasOpen) dropdown.classList.add("open"); // acts like a toggle
   });
 }
 
-
-
-// IMAGE CAROUSELS
+ 
+// 2. IMAGE CAROUSELS
+ 
 
 function initCarousels() {
   var allCarousels = document.querySelectorAll(".carousel");
-
   for (var i = 0; i < allCarousels.length; i++) {
     setupOneCarousel(allCarousels[i]);
   }
@@ -79,44 +70,32 @@ function setupOneCarousel(carousel) {
   var autoplayDelay = parseInt(carousel.dataset.interval, 10) || 4000;
   var autoplayTimer = null;
 
-  // Nothing to slide if there's no track or no slides.
-  if (!track || totalSlides === 0) {
-    return;
-  }
+  if (!track || totalSlides === 0) return;
 
   function showSlide(slideIndex) {
-    //  makes the carousel "wrap around" instead of running
-    // out of slides (e.g. going before slide 0 jumps to the last slide)
+    // Wraps around: before slide 0 goes to the last slide, and vice versa
     currentSlide = (slideIndex + totalSlides) % totalSlides;
     track.style.transform = "translateX(-" + (currentSlide * 100) + "%)";
   }
 
-  function goToNextSlide() {
-    showSlide(currentSlide + 1);
-  }
-
-  function goToPrevSlide() {
-    showSlide(currentSlide - 1);
-  }
+  function goToNextSlide() { showSlide(currentSlide + 1); }
+  function goToPrevSlide() { showSlide(currentSlide - 1); }
 
   function startAutoplay() {
-    stopAutoplay(); // clear any existing timer first, so they don't stack up
+    stopAutoplay(); // clear any old timer first
     autoplayTimer = setInterval(goToNextSlide, autoplayDelay);
   }
 
   function stopAutoplay() {
-    if (autoplayTimer) {
-      clearInterval(autoplayTimer);
-    }
+    if (autoplayTimer) clearInterval(autoplayTimer);
   }
 
   if (nextButton) {
     nextButton.addEventListener("click", function () {
       goToNextSlide();
-      startAutoplay(); // restart the timer so it waits a full delay again
+      startAutoplay();
     });
   }
-
   if (prevButton) {
     prevButton.addEventListener("click", function () {
       goToPrevSlide();
@@ -124,19 +103,16 @@ function setupOneCarousel(carousel) {
     });
   }
 
-  // Pause autoplay while the mouse is hovering over the carousel
   carousel.addEventListener("mouseenter", stopAutoplay);
   carousel.addEventListener("mouseleave", startAutoplay);
 
   showSlide(0);
   startAutoplay();
 }
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-function toggleDarkMode(button) {
+ 
+// 3. DARK MODE
+ 
+function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
   document.documentElement.classList.toggle("dark-mode");
 
@@ -147,36 +123,25 @@ function toggleDarkMode(button) {
 }
 
 function applyDarkModeOnLoad() {
-  var savedPreference = localStorage.getItem("darkMode");
-
-  if (savedPreference === "true") {
+  if (localStorage.getItem("darkMode") === "true") {
     document.body.classList.add("dark-mode");
     document.documentElement.classList.add("dark-mode");
   }
-
   updateThemeIcon();
 }
 
 function updateThemeIcon() {
   var themeButton = document.querySelector(".theme-btn");
-  if (!themeButton) {
-    return;
-  }
-
-  if (document.body.classList.contains("dark-mode")) {
-    themeButton.textContent = "☀️";
-  } else {
-    themeButton.textContent = "🌙";
-  }
+  if (!themeButton) return;
+  themeButton.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 }
 
+ 
+// 4. LOGIN / PROFILE 
+ 
 
-/* =========================================================
-   LOGIN / PROFILE (simulated - no real backend)
-========================================================= */
 function toggleLogin() {
-  var overlay = document.getElementById("loginOverlay");
-  overlay.classList.toggle("show");
+  togglePopup("loginOverlay");
 }
 
 function handleLogin(event) {
@@ -184,9 +149,9 @@ function handleLogin(event) {
 
   localStorage.setItem("loggedIn", "true");
 
-  toggleLogin();       // hide the login popup
-  showProfileMenu();   // show the profile icon instead of the login icon
-  renderCart();         // refresh the cart now that we're "logged in"
+  closePopup("loginOverlay");
+  showProfileMenu();
+  renderCart(); // refresh the cart now that we're "logged in"
 
   return false;
 }
@@ -197,8 +162,7 @@ function logOut() {
 }
 
 function toggleDropdown() {
-  var dropdown = document.getElementById("profileDropdown");
-  dropdown.classList.toggle("open");
+  document.getElementById("profileDropdown").classList.toggle("open");
 }
 
 function showProfileMenu() {
@@ -213,48 +177,55 @@ function hideProfileMenu() {
 }
 
 function checkLoginStatus() {
-  if (isLoggedIn()) {
-    showProfileMenu();
-  }
+  if (isLoggedIn()) showProfileMenu();
 }
 
 function isLoggedIn() {
   return localStorage.getItem("loggedIn") === "true";
 }
+ 
+// 5. GENERIC POPUP HELPERS
+//  open/close/toggle function used by every popup
+ 
 
-
-/* =========================================================
-   SHOPPING CART (saved in localStorage)
-========================================================= */
-
-// Read the cart out of localStorage. If there isn't one yet, return an empty list
-function getCart() {
-  var cartText = localStorage.getItem("cart");
-
-  if (!cartText) {
-    return [];
-  }
-
-  return JSON.parse(cartText);
+function openPopup(popupId) {
+  var popup = document.getElementById(popupId);
+  if (popup) popup.classList.add("show");
 }
 
-// Save the cart list back into localStorage
+function closePopup(popupId) {
+  var popup = document.getElementById(popupId);
+  if (popup) popup.classList.remove("show");
+}
+
+function togglePopup(popupId) {
+  var popup = document.getElementById(popupId);
+  if (popup) popup.classList.toggle("show");
+}
+ 
+// 6. SHOPPING CART (saved in localStorage)
+ 
+
+// Reads the cart out of localStorage (empty list if none saved yet)
+function getCart() {
+  var cartText = localStorage.getItem("cart");
+  return cartText ? JSON.parse(cartText) : [];
+}
+
+// Saves the cart list back into localStorage
 function saveCart(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Look through the cart for an item with this name
-// Returns the item if found, or null if it isn't in the cart
+// Finds an item in the cart by name (or null if not found)
 function findItemInCart(cart, name) {
   for (var i = 0; i < cart.length; i++) {
-    if (cart[i].name === name) {
-      return cart[i];
-    }
+    if (cart[i].name === name) return cart[i];
   }
   return null;
 }
 
-// Add up the price of everything in the cart.
+// Adds up the price of everything in the cart
 function getCartTotal(cart) {
   var total = 0;
   for (var i = 0; i < cart.length; i++) {
@@ -263,7 +234,8 @@ function getCartTotal(cart) {
   return total;
 }
 
-function addToCart(event, name, price, img) {
+// Adds an item to the cart, or increases its quantity if already there
+function addToCart(event, name, price, img, url) {
   event.preventDefault();
 
   if (!isLoggedIn()) {
@@ -275,58 +247,74 @@ function addToCart(event, name, price, img) {
   var existingItem = findItemInCart(cart, name);
 
   if (existingItem) {
-    // Already in the cart - just add one more.
     existingItem.qty += 1;
-    existingItem.img = img;     // keep the image path up to date
-    existingItem.price = price; // keep the price up to date
+    existingItem.img = img;
+    existingItem.price = price;
+    existingItem.url = url;
   } else {
-    // New item - add it to the cart.
-    cart.push({ name: name, price: price, img: img, qty: 1 });
+    cart.push({ name: name, price: price, img: img, qty: 1, url: url });
   }
 
   saveCart(cart);
-  alert("Added to Cart!");
+  showAddedToCart(name);
 }
 
+// Decreases quantity by 1, removing the item once it hits 0
 function removeFromCart(index) {
   var cart = getCart();
-
   cart[index].qty -= 1;
 
-  // If we've removed the last one, take the whole item out of the cart.
-  if (cart[index].qty <= 0) {
-    cart.splice(index, 1);
-  }
+  if (cart[index].qty <= 0) cart.splice(index, 1);
 
   saveCart(cart);
   renderCart();
 }
 
+// Removes an item completely, no matter its quantity
+function removeItemCompletely(index) {
+  var cart = getCart();
+  cart.splice(index, 1);
+  saveCart(cart);
+  renderCart();
+}
+
+// Increases quantity by 1
+function increaseQty(index) {
+  var cart = getCart();
+  cart[index].qty += 1;
+  saveCart(cart);
+  renderCart();
+}
+
+// "Remove All" button on the cart page
 function clearCart() {
   if (!isLoggedIn()) {
     toggleLogin();
     return;
   }
 
-  var cart = getCart();
-  if (cart.length === 0) {
-    alert("Your cart is already empty!");
+  if (getCart().length === 0) {
+    showEmptyCart("Your cart is already empty!");
     return;
   }
 
-  var userConfirmed = confirm("Remove all items from your cart?");
-  if (userConfirmed) {
-    saveCart([]);
-    renderCart();
-  }
+  openPopup("confirmRemoveOverlay");
 }
 
-// Draws the cart items onto the cart page.
+// Called when the user confirms "Yes" on the Remove All popup
+function confirmRemoveAll() {
+  saveCart([]);
+  renderCart();
+  closePopup("confirmRemoveOverlay");
+}
+
+
+// 7. DRAWING THE CART ON SCREEN
+ 
+
 function renderCart() {
   var container = document.getElementById("cartItemsList");
-  if (!container) {
-    return; // this page doesn't have a cart list, so there's nothing to do
-  }
+  if (!container) return; // this page doesn't have a cart list
 
   if (!isLoggedIn()) {
     container.innerHTML =
@@ -336,56 +324,48 @@ function renderCart() {
   }
 
   var cart = getCart();
-  container.innerHTML = "";
 
   if (cart.length === 0) {
     container.innerHTML = "<h2>Your cart is empty</h2>";
     return;
   }
 
-  // Build one row of HTML for each item in the cart.
+  var html = "";
   for (var i = 0; i < cart.length; i++) {
-    var item = cart[i];
-    var row = buildCartRow(item, i);
-    container.appendChild(row);
+    html += buildCartRowHtml(cart[i], i);
   }
+  html += '<h3 class="cart-total">Total: Rs.' + formatRs(getCartTotal(cart)) + "</h3>";
 
-  var totalRow = document.createElement("h3");
-  totalRow.className = "cart-total";
-  totalRow.textContent = "Total: Rs." + formatRs(getCartTotal(cart));
-  container.appendChild(totalRow);
+  container.innerHTML = html;
 }
 
-// Creates one <div class="cart-row"> element for a single cart item.
-function buildCartRow(item, index) {
-  var row = document.createElement("div");
-  row.className = "cart-row";
+// Builds the HTML for one cart row (image, name, price, qty controls, remove button)
+function buildCartRowHtml(item, index) {
+  var itemUrl = item.url || "#";
 
-  var image = document.createElement("img");
-  image.src = item.img;
-  image.className = "cart-row-img";
-
-  var info = document.createElement("div");
-  info.className = "cart-row-info";
-  info.innerHTML =
-    "<h4>" + item.name + "</h4><p>Rs." + formatRs(item.price) + " x " + item.qty + "</p>";
-
-  var removeButton = document.createElement("button");
-  removeButton.className = "btn btn-sm btn-outline-warning";
-  removeButton.textContent = "Remove";
-  removeButton.onclick = function () {
-    removeFromCart(index);
-  };
-
-  row.appendChild(image);
-  row.appendChild(info);
-  row.appendChild(removeButton);
-
-  return row;
+  return (
+    '<div class="cart-row">' +
+      '<a href="' + itemUrl + '"><img src="' + item.img + '" class="cart-row-img"></a>' +
+      '<div class="cart-row-info">' +
+        '<h4><a href="' + itemUrl + '">' + item.name + "</a></h4>" +
+        "<p>Rs." + formatRs(item.price) + " x " + item.qty + "</p>" +
+        '<div class="qty-controls">' +
+          '<button class="qty-btn minus" onclick="removeFromCart(' + index + ')">-</button>' +
+          '<span class="qty-count">' + item.qty + "</span>" +
+          '<button class="qty-btn plus" onclick="increaseQty(' + index + ')">+</button>' +
+        "</div>" +
+      "</div>" +
+      '<button class="btn btn-sm btn-outline-warning" onclick="removeItemCompletely(' + index + ')">Remove</button>' +
+    "</div>"
+  );
 }
 
+ 
+// 8. CHECKOUT
+ 
 
-// CheckOut
+// Holds the single item being bought via "Buy Now" (null the rest of the time)
+var buyNowItem = null;
 
 function buyAll() {
   if (!isLoggedIn()) {
@@ -395,41 +375,73 @@ function buyAll() {
 
   var cart = getCart();
   if (cart.length === 0) {
-    alert("Your cart is empty!");
+    showEmptyCart();
     return;
   }
 
-  var total = getCartTotal(cart);
-  document.getElementById("checkoutTotal").textContent = "Total: Rs." + formatRs(total);
-  document.getElementById("checkoutOverlay").classList.add("show");
+  document.getElementById("checkoutTotal").textContent = "Total: Rs." + formatRs(getCartTotal(cart));
+  openPopup("checkoutOverlay");
+}
+
+function buyNow(event, name, price, img, url) {
+  event.preventDefault();
+
+  if (!isLoggedIn()) {
+    toggleLogin();
+    return;
+  }
+
+  buyNowItem = { name: name, price: price, img: img, qty: 1, url: url };
+
+  document.getElementById("checkoutTotal").textContent = "Total: Rs." + formatRs(price);
+  openPopup("checkoutOverlay");
 }
 
 function closeCheckout() {
-  document.getElementById("checkoutOverlay").classList.remove("show");
+  closePopup("checkoutOverlay");
+  buyNowItem = null; // cancel any pending "Buy Now" purchase
 }
 
 function handleCheckout(event) {
   event.preventDefault();
 
-  var addressInput = document.getElementById("checkoutAddress");
-  var phoneInput = document.getElementById("checkoutPhone");
+  var total;
 
-  var cart = getCart();
-  var total = getCartTotal(cart);
+  if (buyNowItem) {
+    // Buying a single product directly - the cart is left untouched
+    total = buyNowItem.price * buyNowItem.qty;
+    buyNowItem = null;
+  } else {
+    // Buying everything in the cart
+    var cart = getCart();
+    total = getCartTotal(cart);
+    saveCart([]);
+    renderCart();
+  }
 
-  // Clear the form fields.
-  addressInput.value = "";
-  phoneInput.value = "";
+  document.getElementById("checkoutAddress").value = "";
+  document.getElementById("checkoutPhone").value = "";
 
-  closeCheckout();
-
-  // Order "placed" - empty the cart.
-  saveCart([]);
-  renderCart();
-
+  closePopup("checkoutOverlay");
   showOrderConfirm(total);
 
   return false;
+}
+
+ 
+// 9. POPUP MESSAGES  
+ 
+
+function showAddedToCart(name) {
+  var textElement = document.getElementById("addedToCartText");
+  if (textElement) textElement.textContent = name + " has been added to your cart.";
+  openPopup("addedToCartOverlay");
+}
+
+function showEmptyCart(message) {
+  var textElement = document.getElementById("emptyCartText");
+  if (textElement) textElement.textContent = message || "Add some items to your cart.";
+  openPopup("emptyCartOverlay");
 }
 
 function showOrderConfirm(total) {
@@ -439,22 +451,102 @@ function showOrderConfirm(total) {
       "Your Order has been placed. Rs." + formatRs(total) +
       " has been deducted. Your order will arrive in 3 days.";
   }
-
-  var overlay = document.getElementById("orderConfirmOverlay");
-  if (overlay) {
-    overlay.classList.add("show");
-  }
+  openPopup("orderConfirmOverlay");
 }
 
-function closeOrderConfirm() {
-  var overlay = document.getElementById("orderConfirmOverlay");
-  if (overlay) {
-    overlay.classList.remove("show");
-  }
-}
+ 
+function closeAddedToCart() { closePopup("addedToCartOverlay"); }
+function closeEmptyCart() { closePopup("emptyCartOverlay"); }
+function closeOrderConfirm() { closePopup("orderConfirmOverlay"); }
+function closeConfirmRemove() { closePopup("confirmRemoveOverlay"); }
 
+ 
 
-// Turns a number like 1990 into "1,990"  
+// 10. SMALL HELPERS
+
+// Turns a number like 1990 into "1,990"
 function formatRs(num) {
-  return num.toLocaleString('en-IN');
+  return num.toLocaleString("en-IN");
+}
+
+ 
+// PRODUCT DATA (needed for search.html)
+ 
+
+var allProducts = [
+  { name: "Logitech G402 Mouse", desc: "One of the most popular budget Gaming Mouse.", displayPrice: "1,990", cartPrice: 1990, discount: "-69%", rating: "4.3", ratingCount: "200", img: "/Source/Shopping/Logitech Thumbnail.png", url: "item1.html" },
+  { name: "Denver Perfume", desc: "Its the real secret of my and many more's success.", displayPrice: "450", cartPrice: 450, discount: "-30%", rating: "4.1", ratingCount: "85", img: "/Source/Shopping/Denver.jpg", url: "item2.html" },
+  { name: "Omnitrix", desc: "It started when an alien device did what it did.", displayPrice: "1,200", cartPrice: 12000, discount: "-15%", rating: "4.6", ratingCount: "340", img: "/Source/Shopping/ben_10_OG_omnitrix.png", url: "item3.html" },
+  { name: "Pixel Art", desc: "Some Pixel Art You Might Like", displayPrice: "120", cartPrice: 120, discount: "-25%", rating: "4.8", ratingCount: "140", img: "/Source/Shopping/Pixel Art.jpg", url: "item4.html" },
+  { name: "PlayStation 5 Controller", desc: "The Orignal Controller for Play Station", displayPrice: "8,499", cartPrice: 8499, discount: "-10%", rating: "4.7", ratingCount: "512", img: "/Source/Shopping/PS 5 Controller.jpeg", url: "item5.html" },
+  { name: "45-Piece Home Tool Kit", desc: "Everyday hand tools in a carry case.", displayPrice: "1,800", cartPrice: 1800, discount: "-15%", rating: "4.2", ratingCount: "58", img: "/Source/Shopping/45 (2).jpg", url: "item6.html" },
+  { name: "Remote Control Car", desc: "High-speed RC car for kids and adults.", displayPrice: "1,200", cartPrice: 1200, discount: "-30%", rating: "4.6", ratingCount: "210", img: "/Source/Shopping/RC 3.jpg", url: "item7.html" },
+  { name: "Building Blocks Set", desc: "Creative building blocks for all ages.", displayPrice: "950", cartPrice: 950, discount: "-10%", rating: "4.7", ratingCount: "180", img: "/Source/Shopping/MC 1.jpg", url: "item8.html" },
+  { name: "Ceramic Vase Set", desc: "Handcrafted decorative vases, set of 2.", displayPrice: "1,450", cartPrice: 1450, discount: "-18%", rating: "4.5", ratingCount: "64", img: "/Source/Shopping/Vase 1.jpg", url: "item9.html" },
+  { name: "Scented Candle Set", desc: "Enhance your home atmosphere with these Scented Candles.", displayPrice: "850", cartPrice: 850, discount: "-12%", rating: "4.3", ratingCount: "88", img: "/Source/Shopping/Scented Candle.webp", url: "item10.html" }
+];
+ 
+
+// SEARCH
+ 
+
+// Called when the search form is submitted on ANY page
+function goToSearchPage(event) {
+  event.preventDefault();
+
+  var searchText = document.getElementById("searchInput").value.trim();
+  window.location.href = "search.html?q=" + encodeURIComponent(searchText);
+
+  return false;
+}
+
+// Runs on search.html to show the matching products
+function renderSearchResults() {
+  var container = document.getElementById("searchResultsList");
+  if (!container) return; // not on the search page, do nothing
+
+  var params = new URLSearchParams(window.location.search);
+  var searchText = (params.get("q") || "").toLowerCase().trim();
+
+  var heading = document.getElementById("searchHeading");
+  if (heading) {
+    heading.textContent = searchText ? 'Search results for "' + searchText + '"' : "All Products";
+  }
+
+  var matches = [];
+  for (var i = 0; i < allProducts.length; i++) {
+    if (searchText === "" || allProducts[i].name.toLowerCase().indexOf(searchText) !== -1) {
+      matches.push(allProducts[i]);
+    }
+  }
+
+  if (matches.length === 0) {
+    container.innerHTML = "<h3>No products found.</h3>";
+    return;
+  }
+
+  var html = "";
+  for (var j = 0; j < matches.length; j++) {
+    html += buildProductCardHtml(matches[j]);
+  }
+  container.innerHTML = html;
+}
+
+// Builds the HTML for one product card (same look as the cards on shopping.html)
+function buildProductCardHtml(product) {
+  return (
+    '<div class="card">' +
+      '<a href="' + product.url + '"><img src="' + product.img + '" class="card-img-top" alt="' + product.name + '"></a>' +
+      '<div class="card-body">' +
+        '<a href="' + product.url + '" style="text-decoration:none;"><h5 class="card-title">' + product.name + "</h5></a>" +
+        '<p class="card-text">' + product.desc + "</p>" +
+        '<div class="price-row">' +
+          '<strong class="price">Rs.' + product.displayPrice + "</strong>" +
+          '<p class="discount">' + product.discount + "</p>" +
+        "</div>" +
+        '<p class="rating-row">⭐ ' + product.rating + ' <em class="rating-count">(' + product.ratingCount + ")</em></p>" +
+        '<a href="#" class="btn btn-sm btn-warning" onclick="addToCart(event, \'' + product.name + "', " + product.cartPrice + ", '" + product.img + "', '" + product.url + '\')">Add to Cart</a>' +
+      "</div>" +
+    "</div>"
+  );
 }

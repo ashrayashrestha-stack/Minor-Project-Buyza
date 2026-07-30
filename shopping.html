@@ -31,12 +31,12 @@
                 <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
                 <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
                 <li><a href="beauty-products.html">Beauty Products</a></li>
-              </ul>
+              </ul> 
             </li>
           </ul>
         </div>
-        <form class="search-form" role="search">
-          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+        <form class="search-form" role="search" onsubmit="return goToSearchPage(event)">
+          <input class="search-input" type="search" id="searchInput" placeholder="🔍 Search" autocomplete="off">
           <button class="search-btn" type="submit">Search</button>
         </form>
         <a class="cart-link" href="cart.html">
@@ -95,7 +95,8 @@
           </div>
           <p class="rating-row">⭐ 4.3 <em class="rating-count">(200)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add to
+            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png','item1.html')">Add
+            to
             Cart</a>
         </div>
       </div>
@@ -113,8 +114,8 @@
             <p class="discount">-30%</p>
           </div>
           <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
-          <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to
+          <a href="#" class="btn btn-warning"
+            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg','item2.html')">Add to
             Cart</a>
         </div>
       </div>
@@ -133,7 +134,7 @@
           </div>
           <p class="rating-row">⭐ 4.6 <em class="rating-count">(340)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Omnitrix', 12000, '/Source/Shopping/ben_10_OG_omnitrix.png')">Add to
+            onclick="addToCart(event, 'Omnitrix', 1200, '/Source/Shopping/ben_10_OG_omnitrix.png','item3.html')">Add to
             Cart</a>
         </div>
       </div>
@@ -158,7 +159,8 @@
           </div>
           <p class="rating-row">⭐ 4.3 <em class="rating-count">(200)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png')">Add to
+            onclick="addToCart(event, 'Logitech G402 Mouse', 1990, '/Source/Shopping/Logitech Thumbnail.png','item1.html')">Add
+            to
             Cart</a>
         </div>
       </div>
@@ -178,7 +180,8 @@
           </div>
           <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg')">Add to Cart</a>
+            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg','item2.html')">Add to
+            Cart</a>
         </div>
       </div>
 
@@ -196,8 +199,8 @@
             <p class="discount">-15%</p>
           </div>
           <p class="rating-row">⭐ 4.6 <em class="rating-count">(340)</em></p>
-           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Omnitrix', 12000, '/Source/Shopping/ben_10_OG_omnitrix.png')">Add to
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Omnitrix', 1200, '/Source/Shopping/ben_10_OG_omnitrix.png','item3.html')">Add to
             Cart</a>
         </div>
       </div>
@@ -216,7 +219,8 @@
             <p class="discount">-25%</p>
           </div>
           <p class="rating-row">⭐ 4.8 <em class="rating-count">(140)</em></p>
-           <a href="#" class="btn btn-sm btn-warning" onclick="addToCart(event, 'Pixel Art', 120, '/Source/Shopping/Pixel Art.jpg')">Add to Cart</a>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Pixel Art', 120, '/Source/Shopping/Pixel Art.jpg','item4.html')">Add to Cart</a>
         </div>
       </div>
 
@@ -234,8 +238,9 @@
             <p class="discount">-10%</p>
           </div>
           <p class="rating-row">⭐ 4.7 <em class="rating-count">(512)</em></p>
-           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'PlayStation 5 Controller', 8499, '/Source/Shopping/PS 5 Controller.jpeg')">Add to
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'PlayStation 5 Controller', 8499, '/Source/Shopping/PS 5 Controller.jpeg','item5.html')">Add
+            to
             Cart</a>
         </div>
       </div>
@@ -256,7 +261,8 @@
           </div>
           <p class="rating-row">⭐ 4.2 <em class="rating-count">(58)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg')">Add to Cart</a>
+            onclick="addToCart(event, '45-Piece Home Tool Kit', 1800, '/Source/Shopping/45 (2).jpg','item6.html')">Add
+            to Cart</a>
         </div>
       </div>
 
@@ -275,7 +281,8 @@
           </div>
           <p class="rating-row">⭐ 4.6 <em class="rating-count">(210)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Remote Control Car', 1200, '/Source/Shopping/RC 3.jpg')">Add to Cart</a>
+            onclick="addToCart(event, 'Remote Control Car', 1200, '/Source/Shopping/RC 3.jpg','item7.html')">Add to
+            Cart</a>
         </div>
       </div>
 
@@ -294,7 +301,8 @@
           </div>
           <p class="rating-row">⭐ 4.7 <em class="rating-count">(180)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Building Blocks Set', 950, '/Source/Shopping/MC 1.jpg')">Add to Cart</a>
+            onclick="addToCart(event, 'Building Blocks Set', 950, '/Source/Shopping/MC 1.jpg','item8.html')">Add to
+            Cart</a>
         </div>
       </div>
 
@@ -313,13 +321,43 @@
           </div>
           <p class="rating-row">⭐ 4.5 <em class="rating-count">(64)</em></p>
           <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Ceramic Vase Set', 1450, '/Source/Shopping/Vase 1.jpg')">Add to Cart</a>
+            onclick="addToCart(event, 'Ceramic Vase Set', 1450, '/Source/Shopping/Vase 1.jpg','item9.html')">Add to
+            Cart</a>
         </div>
       </div>
 
+      <div class="card">
+        <a href="item10.html">
+          <img src="/Source/Shopping/Scented Candle.webp" class="card-img-top" alt="Ceramic Vase Set">
+        </a>
+        <div class="card-body">
+          <a href="item10.html" style="text-decoration:none;">
+            <h5 class="card-title">Scented Candle Set (4pcs)</h5>
+          </a>
+          <p class="card-text">Enhance your home atmosphere with these Scented Candles.</p>
+          <div class="price-row">
+            <strong class="price">Rs.850</strong>
+            <p class="discount">-12%</p>
+          </div>
+          <p class="rating-row">⭐ 4.3 <em class="rating-count">(88)</em></p>
+          <a href="#" class="btn btn-sm btn-warning"
+            onclick="addToCart(event, 'Scented Candle Set', 850, '/Source/Shopping/Scented Candle.webp', 'item10.html')">Add
+            to Cart</a>
+        </div>
+      </div>
 
     </div>
   </section>
+
+
+  <div class="login-overlay" id="addedToCartOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="closeAddedToCart()">x</button>
+      <h2>Added to Cart!</h2>
+      <p class="order-confirm-text" id="addedToCartText"></p>
+      <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
+    </div>
+  </div>
 
 
   <div class="login-overlay" id="loginOverlay">
@@ -340,4 +378,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>

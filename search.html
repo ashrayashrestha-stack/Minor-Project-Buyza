@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buyza</title>
+  <title>Buyza - Search Results</title>
   <link rel="icon" href="/Source/Shopping/Logo B.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -22,7 +22,7 @@
         <div class="navbar-menu" id="navbarMenu">
           <ul class="navbar-nav">
             <li><a class="nav-link" href="shopping.html">Home</a></li>
-            <li><a class="nav-link" href="shopping.html#Todays Special">Todays Special</a></li>
+            <li><a class="nav-link" href="shopping.html">Todays Special</a></li>
             <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
             <li class="nav-dropdown">
               <a class="nav-link dropdown-toggle" href="#">Categories</a>
@@ -56,42 +56,19 @@
     </nav>
   </header>
 
-  <div class="faq-page">
-    <div class="faq-title">
-      <h1>Frequently Asked Question</h1>
+  <section class="items-section">
+    <h2 class="section-title" id="searchHeading">Search Results</h2>
+    <div class="card-grid" id="searchResultsList">
+      <h3>Loading...</h3>
     </div>
+  </section>
 
-    <div class="faq-box">
-      <h4>1. How do I place an order?</h4>
-      <p>To place an order, simply browse through our categories, select the product you want, and click
-        "Add to Cart." Once you've added all your desired items, go to the Cart page and click "Checkout."
-        Follow the on-screen instructions to complete your order.</p>
-      <hr>
-
-      <h4>2. What payment methods do you accept?</h4>
-      <p>We accept major debit/credit cards, digital wallets, and cash on delivery (COD) (where available).
-        Secure online payments are processed through trusted gateways for your safety.</p>
-      <hr>
-
-      <h4>3. How long will it take for my order to arrive?</h4>
-      <p>Delivery usually takes 3-7 business days, depending on your location and product availability.
-        You'll receive tracking information once your order is shipped.</p>
-      <hr>
-
-      <h4>4. How can I track my order?</h4>
-      <p>Once your order has been shipped, you'll receive a tracking link via email or SMS. You can also
-        track your order directly from the "My Orders" section of your account.</p>
-      <hr>
-
-      <h4>5. What is your return or exchange policy?</h4>
-      <p>We offer a 7-day return or exchange policy for most products. Items must be unused and in their
-        original packaging. To start a return, contact our support team with your order details.</p>
-      <hr>
-
-      <h4>6. Do you offer warranty on products?</h4>
-      <p>Yes, products that come with manufacturer warranties will include the warranty information on
-        their respective product pages. Please keep your invoice as proof of purchase.</p>
-      <hr>
+  <div class="login-overlay" id="addedToCartOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="closeAddedToCart()">x</button>
+      <h2>Added to Cart!</h2>
+      <p class="order-confirm-text" id="addedToCartText"></p>
+      <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
     </div>
   </div>
 
@@ -110,7 +87,6 @@
       </form>
     </div>
   </div>
-
 
   <script src="script.js"></script>
 </body>

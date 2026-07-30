@@ -35,8 +35,8 @@
             </li>
           </ul>
         </div>
-        <form class="search-form" role="search">
-          <input class="search-input" type="search" placeholder="🔍 Search" aria-label="Search">
+        <form class="search-form" role="search" onsubmit="return goToSearchPage(event)">
+          <input class="search-input" type="search" id="searchInput" placeholder="🔍 Search" autocomplete="off">
           <button class="search-btn" type="submit">Search</button>
         </form>
         <a class="cart-link" href="cart.html">
@@ -70,6 +70,26 @@
     </div>
   </div>
 
+  <div class="login-overlay" id="confirmRemoveOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="closeConfirmRemove()">x</button>
+      <h2>Remove All Items?</h2>
+      <p class="order-confirm-text">Are you sure you want to remove all items from your cart?</p>
+      <div style="display:flex; gap:10px;">
+        <button class="btn btn-danger login-submit" type="button" onclick="confirmRemoveAll()">Yes</button>
+        <button class="btn btn-warning login-submit" type="button" onclick="closeConfirmRemove()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-overlay" id="emptyCartOverlay">
+    <div class="login-box">
+      <button class="login-close" onclick="closeEmptyCart()">x</button>
+      <h2>Cart is Empty</h2>
+      <p class="order-confirm-text">Add some items to your cart.</p>
+      <button class="btn btn-warning login-submit" type="button" onclick="closeEmptyCart()">OK</button>
+    </div>
+  </div>
 
   <div class="login-overlay" id="checkoutOverlay">
     <div class="login-box">
