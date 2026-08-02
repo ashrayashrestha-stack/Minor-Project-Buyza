@@ -136,6 +136,8 @@ function updateThemeIcon() {
   themeButton.textContent = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
 }
 
+
+
  
 // 4. LOGIN / PROFILE 
  
@@ -355,7 +357,7 @@ function buildCartRowHtml(item, index) {
           '<button class="qty-btn plus" onclick="increaseQty(' + index + ')">+</button>' +
         "</div>" +
       "</div>" +
-      '<button class="btn btn-sm btn-outline-warning" onclick="removeItemCompletely(' + index + ')">Remove</button>' +
+      '<button class="btn btn-sm btn-outline-danger" onclick="removeItemCompletely(' + index + ')">Remove</button>' +
     "</div>"
   );
 }
