@@ -552,3 +552,29 @@ function buildProductCardHtml(product) {
     "</div>"
   );
 }
+
+
+// 10. CONTACT FORM
+ 
+
+function handleContact(event) {
+  event.preventDefault(); // stop the form from actually submitting/reloading
+
+  var name = document.getElementById("contactName").value;
+
+  document.getElementById("contactName").value = "";
+  document.getElementById("contactEmail").value = "";
+  document.getElementById("contactSubject").value = "";
+  document.getElementById("contactMessage").value = "";
+
+  var textElement = document.getElementById("contactSentText");
+  if (textElement) {
+    textElement.textContent =
+      "Thanks, " + name + "! Your message has been received. Our support team will get back to you soon.";
+  }
+  openPopup("contactSentOverlay");
+
+  return false;
+}
+
+function closeContactSent() { closePopup("contactSentOverlay"); }

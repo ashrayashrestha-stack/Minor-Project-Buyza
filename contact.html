@@ -4,32 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buyza - Beauty Products</title>
+  <title>Buyza - Contact Us</title>
   <link rel="icon" href="/Source/Shopping/Logo B.png">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
   <header class="site-header">
     <nav class="navbar">
       <div class="navbar-container">
         <a class="navbar-brand" href="shopping.html">
           <img src="Source/Shopping/Logo B.png" alt="Buyza">
         </a>
-        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation"></button>
+        <button class="navbar-toggle" id="navToggle" aria-label="Toggle navigation">
+        </button>
         <div class="navbar-menu" id="navbarMenu">
           <ul class="navbar-nav">
             <li><a class="nav-link" href="shopping.html">Home</a></li>
             <li><a class="nav-link" href="shopping.html#Todays Special">Todays Special</a></li>
             <li><a class="nav-link" href="FAQ.html">FAQ</a></li>
-            <li><a class="nav-link" href="contact.html">Contact</a></li>
+            <li><a class="nav-link active" href="contact.html">Contact</a></li>
             <li class="nav-dropdown">
               <a class="nav-link dropdown-toggle" href="#">Categories</a>
               <ul class="dropdown-menu">
                 <li><a href="tools-diys-toys.html">Tools, DIYs, Toys</a></li>
                 <li><a href="home-lifestyle-art.html">Home, Lifestyle, Art</a></li>
                 <li><a href="electronic-accessories.html">Electronic Accessories</a></li>
-                <li><a class="nav-link active" href="beauty-products.html">Beauty Products</a></li>
+                <li><a href="beauty-products.html">Beauty Products</a></li>
               </ul>
             </li>
           </ul>
@@ -55,47 +57,80 @@
     </nav>
   </header>
 
-  <nav class="breadcrumb" aria-label="breadcrumb">
-    <ol class="breadcrumb-list">
-      <li><a href="shopping.html">Home</a></li>
-      <li class="active">Beauty Products</li>
-    </ol>
-  </nav>
 
-  <section class="items-section">
-    <h2 class="section-title">Beauty Products</h2>
-    <div class="card-grid">
+  <div class="contact-page">
+    <div class="contact-title">
+      <h1>Contact Us</h1>
+      <p>Got a question, a problem with an order, or just want to say Hi? We'd love to hear from you.</p>
+    </div>
 
-      <div class="card">
-        <a href="item2.html">
-          <img src="/Source/Shopping/Denver.jpg" class="card-img-top" alt="Denver Perfume">
-        </a>
-        <div class="card-body">
-          <a href="item2.html" style="text-decoration:none;">
-            <h5 class="card-title">Denver Perfume</h5>
-          </a>
-          <p class="card-text">Its the real secret of my and many more's success.</p>
-          <div class="price-row">
-            <strong class="price">Rs.450</strong>
-            <p class="discount">-30%</p>
+    <div class="contact-content">
+
+      <div class="contact-info-box">
+        <h4>Get in Touch</h4>
+
+        <div class="contact-info-row">
+          <span class="contact-icon">📍</span>
+          <div>
+            <strong>Address</strong>
+            <p>Buyza Pvt. Ltd., New Baneshwor, Kathmandu, Nepal</p>
           </div>
-          <p class="rating-row">⭐ 4.1 <em class="rating-count">(85)</em></p>
-          <a href="#" class="btn btn-sm btn-warning"
-            onclick="addToCart(event, 'Denver Perfume', 450, '/Source/Shopping/Denver.jpg','item2.html')">Add to
-            Cart</a>
         </div>
+
+        <div class="contact-info-row">
+          <span class="contact-icon">📞</span>
+          <div>
+            <strong>Phone</strong>
+            <p>+977 98XXXXXXXX, 97XXXXXXXX </p>
+          </div>
+        </div>
+
+        <div class="contact-info-row">
+          <span class="contact-icon">✉️</span>
+          <div>
+            <strong>Email</strong>
+            <p>support@buyza.com</p>
+          </div>
+        </div>
+
+        <div class="contact-info-row">
+          <span class="contact-icon">🕐</span>
+          <div>
+            <strong>Support Hours</strong>
+            <p>Sun - Sat, 00:00 AM - 24:00 PM</p>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="contact-form-box">
+        <h4>Send Us a Message</h4>
+        <form onsubmit="return handleContact(event)">
+          <label for="contactName">Full Name</label>
+          <input type="text" id="contactName" placeholder="Your name" required>
+
+          <label for="contactEmail">Email</label>
+          <input type="email" id="contactEmail" placeholder="you@example.com" required>
+
+          <label for="contactSubject">Subject</label>
+          <input type="text" id="contactSubject" placeholder="What's this about?" required>
+
+          <label for="contactMessage">Message</label>
+          <textarea id="contactMessage" rows="5" placeholder="Write your message here..." required></textarea>
+
+          <button type="submit" class="btn btn-warning login-submit">Send Message</button>
+        </form>
       </div>
 
     </div>
-  </section>
+  </div>
 
-
-  <div class="login-overlay" id="addedToCartOverlay">
+  <div class="login-overlay" id="contactSentOverlay">
     <div class="login-box">
-      <button class="login-close" onclick="closeAddedToCart()">x</button>
-      <h2>Added to Cart!</h2>
-      <p class="order-confirm-text" id="addedToCartText"></p>
-      <button class="btn btn-warning login-submit" type="button" onclick="closeAddedToCart()">OK</button>
+      <button class="login-close" onclick="closeContactSent()">x</button>
+      <h2>Message Sent!</h2>
+      <p class="order-confirm-text" id="contactSentText"></p>
+      <button class="btn btn-warning login-submit" type="button" onclick="closeContactSent()">OK</button>
     </div>
   </div>
 
@@ -114,6 +149,7 @@
       </form>
     </div>
   </div>
+
 
   <footer class="site-footer">
     <p>&copy; 2026 Buyza. All rights reserved.</p>
