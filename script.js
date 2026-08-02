@@ -5,6 +5,7 @@
 // Run all setup functions only when the page has loaded
 document.addEventListener("DOMContentLoaded", function () {
   initDropdowns();
+  initNavToggle(); 
   initCarousels();
   checkLoginStatus();
   renderCart();
@@ -12,10 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
   renderSearchResults();
 });
 
- 
 // 1. NAVBAR DROPDOWN (Categories menu)
  
-
 function initDropdowns() {
   var allDropdowns = document.querySelectorAll(".nav-dropdown");
 
@@ -36,11 +35,9 @@ function initDropdowns() {
 function setupOneDropdown(dropdown, allDropdowns) {
   var toggleLink = dropdown.querySelector(".dropdown-toggle");
   if (!toggleLink) return;
-
   toggleLink.addEventListener("click", function (event) {
     event.preventDefault();
     var wasOpen = dropdown.classList.contains("open");
-
     for (var i = 0; i < allDropdowns.length; i++) {
       allDropdowns[i].classList.remove("open");
     }
@@ -48,9 +45,35 @@ function setupOneDropdown(dropdown, allDropdowns) {
   });
 }
 
- 
+// MOBILE HAMBURGER MENU
+
+function initNavToggle() {
+  var toggleBtn = document.getElementById("navToggle");
+  var menu = document.getElementById("navbarMenu");
+  if (!toggleBtn || !menu) return;
+
+  toggleBtn.addEventListener("click", function (event) {
+    event.stopPropagation();
+    menu.classList.toggle("open");
+  });
+
+  // Clicking outside the open menu closes it
+  document.addEventListener("click", function (event) {
+    if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+      menu.classList.remove("open");
+    }
+  });
+
+  // Clicking a plain nav link (not the Categories dropdown toggle) closes the menu
+  var plainLinks = menu.querySelectorAll(".nav-link:not(.dropdown-toggle)");
+  for (var i = 0; i < plainLinks.length; i++) {
+    plainLinks[i].addEventListener("click", function () {
+      menu.classList.remove("open");
+    });
+  }
+}
+
 // 2. IMAGE CAROUSELS
- 
 
 function initCarousels() {
   var allCarousels = document.querySelectorAll(".carousel");
@@ -64,7 +87,6 @@ function setupOneCarousel(carousel) {
   var slides = carousel.querySelectorAll(".carousel-slide");
   var prevButton = carousel.querySelector(".carousel-btn.prev");
   var nextButton = carousel.querySelector(".carousel-btn.next");
-
   var totalSlides = slides.length;
   var currentSlide = 0;
   var autoplayDelay = parseInt(carousel.dataset.interval, 10) || 4000;
@@ -102,10 +124,8 @@ function setupOneCarousel(carousel) {
       startAutoplay();
     });
   }
-
   carousel.addEventListener("mouseenter", stopAutoplay);
   carousel.addEventListener("mouseleave", startAutoplay);
-
   showSlide(0);
   startAutoplay();
 }
@@ -115,7 +135,6 @@ function setupOneCarousel(carousel) {
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
   document.documentElement.classList.toggle("dark-mode");
-
   var isDarkModeOn = document.body.classList.contains("dark-mode");
   localStorage.setItem("darkMode", isDarkModeOn ? "true" : "false");
 
@@ -137,20 +156,15 @@ function updateThemeIcon() {
 }
 
 
-
- 
 // 4. LOGIN / PROFILE 
  
-
 function toggleLogin() {
   togglePopup("loginOverlay");
 }
 
 function handleLogin(event) {
   event.preventDefault(); // stop the form from actually submitting/reloading
-
   localStorage.setItem("loggedIn", "true");
-
   closePopup("loginOverlay");
   showProfileMenu();
   renderCart(); // refresh the cart now that we're "logged in"
@@ -188,7 +202,6 @@ function isLoggedIn() {
  
 // 5. GENERIC POPUP HELPERS
 //  open/close/toggle function used by every popup
- 
 
 function openPopup(popupId) {
   var popup = document.getElementById(popupId);
@@ -206,7 +219,6 @@ function togglePopup(popupId) {
 }
  
 // 6. SHOPPING CART (saved in localStorage)
- 
 
 // Reads the cart out of localStorage (empty list if none saved yet)
 function getCart() {
@@ -239,15 +251,12 @@ function getCartTotal(cart) {
 // Adds an item to the cart, or increases its quantity if already there
 function addToCart(event, name, price, img, url) {
   event.preventDefault();
-
   if (!isLoggedIn()) {
     toggleLogin();
     return;
   }
-
   var cart = getCart();
   var existingItem = findItemInCart(cart, name);
-
   if (existingItem) {
     existingItem.qty += 1;
     existingItem.img = img;
@@ -256,7 +265,6 @@ function addToCart(event, name, price, img, url) {
   } else {
     cart.push({ name: name, price: price, img: img, qty: 1, url: url });
   }
-
   saveCart(cart);
   showAddedToCart(name);
 }
@@ -265,9 +273,7 @@ function addToCart(event, name, price, img, url) {
 function removeFromCart(index) {
   var cart = getCart();
   cart[index].qty -= 1;
-
   if (cart[index].qty <= 0) cart.splice(index, 1);
-
   saveCart(cart);
   renderCart();
 }
@@ -294,15 +300,12 @@ function clearCart() {
     toggleLogin();
     return;
   }
-
   if (getCart().length === 0) {
     showEmptyCart("Your cart is already empty!");
     return;
   }
-
   openPopup("confirmRemoveOverlay");
 }
-
 // Called when the user confirms "Yes" on the Remove All popup
 function confirmRemoveAll() {
   saveCart([]);
@@ -310,41 +313,33 @@ function confirmRemoveAll() {
   closePopup("confirmRemoveOverlay");
 }
 
-
 // 7. DRAWING THE CART ON SCREEN
- 
 
 function renderCart() {
   var container = document.getElementById("cartItemsList");
   if (!container) return; // this page doesn't have a cart list
-
   if (!isLoggedIn()) {
     container.innerHTML =
       "<h2>Please log in to view your cart</h2>" +
       '<button class="btn btn-warning" onclick="toggleLogin()">Login</button>';
     return;
   }
-
   var cart = getCart();
-
   if (cart.length === 0) {
     container.innerHTML = "<h2>Your cart is empty</h2>";
     return;
   }
-
   var html = "";
   for (var i = 0; i < cart.length; i++) {
     html += buildCartRowHtml(cart[i], i);
   }
   html += '<h3 class="cart-total">Total: Rs.' + formatRs(getCartTotal(cart)) + "</h3>";
-
   container.innerHTML = html;
 }
 
 // Builds the HTML for one cart row (image, name, price, qty controls, remove button)
 function buildCartRowHtml(item, index) {
   var itemUrl = item.url || "#";
-
   return (
     '<div class="cart-row">' +
       '<a href="' + itemUrl + '"><img src="' + item.img + '" class="cart-row-img"></a>' +
@@ -365,36 +360,29 @@ function buildCartRowHtml(item, index) {
  
 // 8. CHECKOUT
  
-
 // Holds the single item being bought via "Buy Now" (null the rest of the time)
 var buyNowItem = null;
-
 function buyAll() {
   if (!isLoggedIn()) {
     toggleLogin();
     return;
   }
-
   var cart = getCart();
   if (cart.length === 0) {
     showEmptyCart();
     return;
   }
-
   document.getElementById("checkoutTotal").textContent = "Total: Rs." + formatRs(getCartTotal(cart));
   openPopup("checkoutOverlay");
 }
 
 function buyNow(event, name, price, img, url) {
   event.preventDefault();
-
   if (!isLoggedIn()) {
     toggleLogin();
     return;
   }
-
   buyNowItem = { name: name, price: price, img: img, qty: 1, url: url };
-
   document.getElementById("checkoutTotal").textContent = "Total: Rs." + formatRs(price);
   openPopup("checkoutOverlay");
 }
@@ -406,9 +394,7 @@ function closeCheckout() {
 
 function handleCheckout(event) {
   event.preventDefault();
-
   var total;
-
   if (buyNowItem) {
     // Buying a single product directly - the cart is left untouched
     total = buyNowItem.price * buyNowItem.qty;
@@ -420,20 +406,16 @@ function handleCheckout(event) {
     saveCart([]);
     renderCart();
   }
-
   document.getElementById("checkoutAddress").value = "";
   document.getElementById("checkoutPhone").value = "";
-
   closePopup("checkoutOverlay");
   showOrderConfirm(total);
-
   return false;
 }
 
  
 // 9. POPUP MESSAGES  
  
-
 function showAddedToCart(name) {
   var textElement = document.getElementById("addedToCartText");
   if (textElement) textElement.textContent = name + " has been added to your cart.";
@@ -455,8 +437,6 @@ function showOrderConfirm(total) {
   }
   openPopup("orderConfirmOverlay");
 }
-
- 
 function closeAddedToCart() { closePopup("addedToCartOverlay"); }
 function closeEmptyCart() { closePopup("emptyCartOverlay"); }
 function closeOrderConfirm() { closePopup("orderConfirmOverlay"); }
@@ -473,12 +453,10 @@ function formatRs(num) {
 
  
 // PRODUCT DATA (needed for search.html)
- 
-
 var allProducts = [
   { name: "Logitech G402 Mouse", desc: "One of the most popular budget Gaming Mouse.", displayPrice: "1,990", cartPrice: 1990, discount: "-69%", rating: "4.3", ratingCount: "200", img: "/Source/Shopping/Logitech Thumbnail.png", url: "item1.html" },
   { name: "Denver Perfume", desc: "Its the real secret of my and many more's success.", displayPrice: "450", cartPrice: 450, discount: "-30%", rating: "4.1", ratingCount: "85", img: "/Source/Shopping/Denver.jpg", url: "item2.html" },
-  { name: "Omnitrix", desc: "It started when an alien device did what it did.", displayPrice: "1,200", cartPrice: 12000, discount: "-15%", rating: "4.6", ratingCount: "340", img: "/Source/Shopping/ben_10_OG_omnitrix.png", url: "item3.html" },
+  { name: "Omnitrix", desc: "It started when an alien device did what it did.", displayPrice: "1,200", cartPrice: 1200, discount: "-15%", rating: "4.6", ratingCount: "340", img: "/Source/Shopping/ben_10_OG_omnitrix.png", url: "item3.html" },
   { name: "Pixel Art", desc: "Some Pixel Art You Might Like", displayPrice: "120", cartPrice: 120, discount: "-25%", rating: "4.8", ratingCount: "140", img: "/Source/Shopping/Pixel Art.jpg", url: "item4.html" },
   { name: "PlayStation 5 Controller", desc: "The Orignal Controller for Play Station", displayPrice: "8,499", cartPrice: 8499, discount: "-10%", rating: "4.7", ratingCount: "512", img: "/Source/Shopping/PS 5 Controller.jpeg", url: "item5.html" },
   { name: "45-Piece Home Tool Kit", desc: "Everyday hand tools in a carry case.", displayPrice: "1,800", cartPrice: 1800, discount: "-15%", rating: "4.2", ratingCount: "58", img: "/Source/Shopping/45 (2).jpg", url: "item6.html" },
@@ -490,15 +468,12 @@ var allProducts = [
  
 
 // SEARCH
- 
 
 // Called when the search form is submitted on ANY page
 function goToSearchPage(event) {
   event.preventDefault();
-
   var searchText = document.getElementById("searchInput").value.trim();
   window.location.href = "search.html?q=" + encodeURIComponent(searchText);
-
   return false;
 }
 
@@ -506,27 +481,22 @@ function goToSearchPage(event) {
 function renderSearchResults() {
   var container = document.getElementById("searchResultsList");
   if (!container) return; // not on the search page, do nothing
-
   var params = new URLSearchParams(window.location.search);
   var searchText = (params.get("q") || "").toLowerCase().trim();
-
   var heading = document.getElementById("searchHeading");
   if (heading) {
     heading.textContent = searchText ? 'Search results for "' + searchText + '"' : "All Products";
   }
-
   var matches = [];
   for (var i = 0; i < allProducts.length; i++) {
     if (searchText === "" || allProducts[i].name.toLowerCase().indexOf(searchText) !== -1) {
       matches.push(allProducts[i]);
     }
   }
-
   if (matches.length === 0) {
     container.innerHTML = "<h3>No products found.</h3>";
     return;
   }
-
   var html = "";
   for (var j = 0; j < matches.length; j++) {
     html += buildProductCardHtml(matches[j]);
@@ -553,28 +523,21 @@ function buildProductCardHtml(product) {
   );
 }
 
-
-// 10. CONTACT FORM
- 
+// 11. CONTACT FORM
 
 function handleContact(event) {
-  event.preventDefault(); // stop the form from actually submitting/reloading
-
+  event.preventDefault(); 
   var name = document.getElementById("contactName").value;
-
   document.getElementById("contactName").value = "";
   document.getElementById("contactEmail").value = "";
   document.getElementById("contactSubject").value = "";
   document.getElementById("contactMessage").value = "";
-
   var textElement = document.getElementById("contactSentText");
   if (textElement) {
     textElement.textContent =
       "Thanks, " + name + "! Your message has been received. Our support team will get back to you soon.";
   }
   openPopup("contactSentOverlay");
-
   return false;
 }
-
 function closeContactSent() { closePopup("contactSentOverlay"); }

@@ -15,7 +15,7 @@ img {
   max-width: 100%;
   display: block;
 }
- 
+
 
 .site-header {
   height: 60px;
@@ -72,6 +72,12 @@ img {
   cursor: pointer;
 }
 
+.navbar-toggle::before {
+  content: "☰";
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+}
 
 .navbar-menu {
   display: flex;
@@ -298,7 +304,7 @@ img {
   color: #fff;
 }
 
-.btn-danger{
+.btn-danger {
   background: red;
   color: white;
 }
@@ -433,13 +439,14 @@ img {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  flex: 1;   
 }
 
 .card-title {
   font-size: 18px;
   font-weight: bold;
   margin: 0;
-   min-height: 5px;
+  min-height: 5px;
 }
 
 .card-text {
@@ -450,7 +457,7 @@ img {
 }
 
 .card-body .btn {
-  margin-top: 2px;
+  margin-top: auto;
 }
 
 .price-row {
@@ -761,7 +768,8 @@ body.dark-mode .rating-count {
   gap: 6px;
 }
 
-.login-box label[for="loginEmail"],.login-box label[for="loginPassword"] {
+.login-box label[for="loginEmail"],
+.login-box label[for="loginPassword"] {
   font-size: 14px;
   font-weight: 500;
 }
@@ -820,6 +828,7 @@ body.dark-mode {
   color: #e9e9e9;
   min-height: 100vh;
 }
+
 body.dark-mode .product-specs {
   color: #bbb;
 }
@@ -973,6 +982,7 @@ body.dark-mode .cart-row-info p {
   margin: 0 0 16px;
   color: #333;
 }
+
 body.dark-mode .order-confirm-text {
   color: #e9e9e9;
 }
@@ -1180,3 +1190,203 @@ body.dark-mode .site-footer {
 }
 
 
+
+/* Media Queries
+
+/* ---------- Small tablets (till 768px) ---------- */
+@media (max-width: 768px) {
+
+  /* Hamburger menu */
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .cart-link {
+    margin-left: auto;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #0dcaf0;
+    padding: 10px 16px 16px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-menu.open {
+    display: flex;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    width: 100%;
+  }
+
+  .nav-dropdown {
+    position: static;
+  }
+
+  .nav-dropdown .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    display: none;
+    width: 100%;
+    padding-left: 12px;
+  }
+
+  .nav-dropdown.open .dropdown-menu {
+    display: block;
+  }
+
+  .search-form {
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .navbar-menu.open .search-form {
+    display: flex;
+  }
+
+  .search-input {
+    flex: 1;
+    width: auto;
+  }
+
+  .navbar-container {
+    position: relative;
+    flex-wrap: nowrap;
+  }
+
+  body.dark-mode .navbar-menu {
+    background-color: #0a3d4a;
+  }
+
+  .hero-carousel-wrap {
+    padding: 0 16px;
+  }
+
+  .hero-carousel {
+    height: 220px;
+  }
+
+  .product-carousel {
+    height: 260px;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .card-grid-special {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .card-img-top {
+    height: 140px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .product-page {
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .product-media,
+  .product-details {
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+
+  .product-title-box h3 {
+    font-size: 17px;
+  }
+
+  .product-rating {
+    font-size: 22px;
+  }
+
+  .contact-content {
+    flex-direction: column;
+  }
+
+  .cart-actions {
+    gap: 10px;
+  }
+
+  .cart-row {
+    flex-wrap: wrap;
+  }
+}
+
+/* ---------- Small phones (till 480px) ---------- */
+
+@media (max-width: 480px) {
+  .navbar-brand img {
+    height: 32px;
+  }
+
+  .cart-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .login-btn,
+  .theme-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .card-grid,
+  .card-grid-special {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
+
+  .card-img-top {
+    height: 120px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .product-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-actions .btn {
+    width: 100%;
+  }
+
+  .login-box {
+    padding: 18px;
+  }
+
+  .site-footer {
+    font-size: 16px;
+  }
+
+  .breadcrumb {
+    margin-top: 20px;
+  }
+}
